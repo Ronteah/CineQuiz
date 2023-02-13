@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:background="@color/bg_blue"
+        >
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginStart="130dp"
+            android:contentDescription="Logo CineQuiz"
+            app:srcCompat="@drawable/logo_cinequiz" />
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="90dp"
+            android:background="@color/bg_blue"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="40dp"
+                android:gravity="center"
+                android:textStyle="normal|bold|italic"
+                android:text="12"
+                android:textColor="@color/yellow"
+                android:textSize="26sp" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:contentDescription="Icon Oscar"
+                app:srcCompat="@drawable/oscar" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        >
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="70dp"
+            android:textStyle="normal|bold|italic"
+            android:text="@string/easy"
+            />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="50dp"
+            android:textStyle="normal|bold|italic"
+            android:text="@string/medium"
+            />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="50dp"
+            android:textStyle="normal|bold|italic"
+            android:text="@string/hard"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CineQuiz</string>
+    <string name="easy">Facile</string>
+    <string name="medium">Moyen</string>
+    <string name="hard">Difficile</string>
+</resources>
