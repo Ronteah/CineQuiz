@@ -27,7 +27,8 @@
         android:layout_width="303dp"
         android:layout_height="114dp"
         android:text="Button"
-        tools:layout_editor_absoluteX="54dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="165dp" />
 
     <Button
@@ -45,4 +46,13 @@
         android:text="Button"
         tools:layout_editor_absoluteX="54dp"
         tools:layout_editor_absoluteY="723dp" />
+
+    <TextView
+        android:id="@+id/bou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="@+id/button4"
+        tools:layout_editor_absoluteY="19dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
