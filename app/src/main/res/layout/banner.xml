@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/banner"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@color/bg_blue"
+    android:orientation="horizontal"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        android:id="@+id/retour"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/stat_button"
+        android:backgroundTint="#FF0303"
+        android:foreground="?attr/homeAsUpIndicator"
+        android:foregroundTint="@color/white"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+        android:contentDescription="Logo CineQuiz"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_cinequiz" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_blue"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="40dp"
+            android:gravity="center"
+            android:text="12"
+            android:textColor="@color/yellow"
+            android:textSize="26sp"
+            android:textStyle="normal|bold|italic" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:contentDescription="Icon Oscar"
+            app:srcCompat="@drawable/oscar" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

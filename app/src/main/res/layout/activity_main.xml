@@ -7,119 +7,80 @@
     android:background="@color/dark_blue"
     tools:context=".MainActivity">
 
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="90dp"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:id="@+id/banner"-->
-    <!--        android:background="@color/bg_blue"-->
-    <!--        >-->
+    <include layout="@layout/banner" />
 
-    <!--        <ImageView-->
-    <!--            android:layout_width="150dp"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:layout_marginStart="130dp"-->
-    <!--            android:contentDescription="Logo CineQuiz"-->
-    <!--            android:gravity="center"-->
-    <!--            app:srcCompat="@drawable/logo_cinequiz" />-->
-
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="130dp"-->
-    <!--            android:layout_height="90dp"-->
-    <!--            android:background="@color/bg_blue"-->
-    <!--            android:orientation="horizontal">-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="40dp"-->
-    <!--                android:layout_height="match_parent"-->
-    <!--                android:layout_marginStart="40dp"-->
-    <!--                android:gravity="center"-->
-    <!--                android:textStyle="normal|bold|italic"-->
-    <!--                android:text="12"-->
-    <!--                android:textColor="@color/yellow"-->
-    <!--                android:textSize="26sp" />-->
-
-    <!--            <ImageView-->
-    <!--                android:layout_width="15dp"-->
-    <!--                android:layout_height="match_parent"-->
-    <!--                android:contentDescription="Icon Oscar"-->
-    <!--                app:srcCompat="@drawable/oscar" />-->
-    <!--        </LinearLayout>-->
-
-    <!--    </LinearLayout>-->
-
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="600dp"-->
-    <!--        android:layout_below="@+id/banner"-->
-    <!--        android:layout_centerInParent="true"-->
-    <!--        android:orientation="vertical">-->
-
-    <!--        <Button-->
-    <!--            android:layout_width="150dp"-->
-    <!--            android:layout_height="100dp"-->
-    <!--            android:layout_marginStart="70dp"-->
-    <!--            android:layout_marginTop="100dp"-->
-    <!--            android:text="@string/easy"-->
-    <!--            android:textStyle="normal|bold|italic" />-->
-
-    <!--        <Button-->
-    <!--            android:layout_width="150dp"-->
-    <!--            android:layout_height="100dp"-->
-    <!--            android:layout_marginStart="200dp"-->
-    <!--            android:layout_marginTop="50dp"-->
-    <!--            android:text="@string/medium"-->
-    <!--            android:textStyle="normal|bold|italic" />-->
-
-    <!--        <Button-->
-    <!--            android:layout_width="150dp"-->
-    <!--            android:layout_height="100dp"-->
-    <!--            android:layout_marginStart="120dp"-->
-    <!--            android:layout_marginTop="50dp"-->
-    <!--            android:text="@string/hard"-->
-    <!--            android:textStyle="normal|bold|italic" />-->
-
-    <!--    </LinearLayout>-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/stat"-->
-    <!--        style="@style/Widget.AppCompat.Button"-->
-    <!--        android:layout_width="125dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentEnd="true"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:layout_marginEnd="22dp"-->
-    <!--        android:layout_marginBottom="15dp"-->
-    <!--        android:background="@drawable/stat_button"-->
-    <!--        android:text="Button" />-->
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/prenom"
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="prenom" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="nom" />
+            android:layout_height="600dp"
+            android:layout_below="@+id/banner"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/valider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="valider" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="100dp"
+                android:text="@string/easy"
+                android:textStyle="normal|bold|italic" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/medium"
+                android:textStyle="normal|bold|italic" />
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/hard"
+                android:textStyle="normal|bold|italic" />
+
+        </LinearLayout>
+
+    <Button
+        android:id="@+id/stat"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/stat_button"
+        android:text="Button" />
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/prenom"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="prenom" />-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/nom"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="nom" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/valider"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="valider" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 </RelativeLayout>
