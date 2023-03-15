@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,78 +8,129 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/banner" />
+        layout="@layout/banner_back" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="303dp"
-        android:layout_height="114dp"
-        android:layout_marginBottom="24dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button4" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="91dp">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="303dp"
-        android:layout_height="114dp"
-        android:layout_marginBottom="24dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button3" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_margin="5dp">
 
-    <Button
-        android:id="@+id/button4"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="303dp"
-        android:layout_height="114dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/stat_button"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <ImageView
+                android:id="@+id/textDifficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:padding="20dp"
+                android:textAlignment="center"
+                tools:ignore="MissingConstraints"
+                tools:srcCompat="@drawable/moyen" />
+        </RelativeLayout>
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="303dp"
-        android:layout_height="114dp"
-        android:layout_marginBottom="24dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="85dp"
+            tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="303dp"
-        android:layout_height="114dp"
-        android:layout_marginBottom="32dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/difficulte"
-        android:layout_width="119dp"
-        android:layout_height="48dp"
-        android:background="@drawable/stat_button"
-        android:drawableBottom="@drawable/stat_button"
-        android:text="Facile"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white"
-        app:drawableBottomCompat="@drawable/stat_button"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageButton
+                        android:id="@+id/modeNormal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="140dp"
+                        android:layout_margin="30dp"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/modenormal"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="30dp"
+                        tools:srcCompat="@drawable/modenormal" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/modeBlindtest"
+                        android:layout_width="fill_parent"
+                        android:layout_height="140dp"
+                        android:layout_margin="30dp"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/modeblindtest"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="30dp"
+                        tools:srcCompat="@drawable/modeblindtest" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/modeImage"
+                        android:layout_width="fill_parent"
+                        android:layout_height="140dp"
+                        android:layout_margin="30dp"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/modeimage"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="30dp"
+                        tools:srcCompat="@drawable/modeimage" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/modeCelebrity"
+                        android:layout_width="fill_parent"
+                        android:layout_height="140dp"
+                        android:layout_margin="30dp"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/modecelebrity"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="30dp"
+                        tools:srcCompat="@drawable/modecelebrity" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/modeReplique"
+                        android:layout_width="fill_parent"
+                        android:layout_height="140dp"
+                        android:layout_margin="30dp"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/modereplique"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="30dp"
+                        tools:srcCompat="@drawable/modereplique" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</RelativeLayout>

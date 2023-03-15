@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="modeNormal" type="id" />
+    <item name="modeBlindtest" type="id" />
+    <item name="modeImage" type="id" />
+    <item name="modeCelebrity" type="id" />
+    <item name="modeReplique" type="id" />
+</resources>
