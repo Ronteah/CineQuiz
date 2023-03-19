@@ -9,12 +9,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import androidx.core.view.GestureDetectorCompat;
+
+import com.example.cinequiz.utils.CustomGestureListener;
 
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     float x1, x2, y1, y2;
+
+    private GestureDetectorCompat gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         ImageButton easy = findViewById(R.id.btnEasy);
         ImageButton medium = findViewById(R.id.btnMedium);
         ImageButton hard = findViewById(R.id.btnHard);
+
+        setContentView(R.layout.activity_main);
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector));
 
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,22 +66,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public boolean onTouchEvent(MotionEvent touchEvent){
-        switch(touchEvent.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                x1 = touchEvent.getX();
-                y1 = touchEvent.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-                x2 = touchEvent.getX();
-                y2 = touchEvent.getY();
-                if(x1 > x2){
-                    Intent intent = new Intent(MainActivity.this, StatActivity.class);
-                    startActivity(intent);
-                }
-                break;
-        }
-        return false;
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
     }
 
 //    private void buildDialog() {

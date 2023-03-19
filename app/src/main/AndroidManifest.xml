@@ -15,7 +15,7 @@
             android:name=".ModeActivity"
             android:exported="false" />
         <activity
-            android:name=".DifficultyActivity"
+            android:name=".StatActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

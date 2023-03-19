@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_blue"
-    tools:context=".MainActivity">
+    android:clickable="true"
+    tools:context=".StatActivity">
 
     <include layout="@layout/banner" />
 
@@ -142,6 +143,7 @@
         </ScrollView>
 
         <RelativeLayout
+            android:id="@+id/btnHome"
             android:layout_width="fill_parent"
             android:layout_height="53dp"
             android:layout_alignParentBottom="true"
