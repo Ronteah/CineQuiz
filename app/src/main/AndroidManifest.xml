@@ -18,6 +18,9 @@
             android:name=".StatActivity"
             android:exported="false" />
         <activity
+            android:name=".DifficultyActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

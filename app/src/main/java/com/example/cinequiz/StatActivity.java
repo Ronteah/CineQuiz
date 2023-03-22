@@ -1,6 +1,5 @@
 package com.example.cinequiz;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,15 +7,14 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageButton;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.core.view.GestureDetectorCompat;
 
 import com.example.cinequiz.utils.CustomGestureListener;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class StatActivity extends AppCompatActivity {
@@ -29,23 +27,20 @@ public class StatActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
         Objects.requireNonNull(getSupportActionBar()).hide(); //hide the title bar
         setContentView(R.layout.activity_stat);
-        System.out.println("boubou6");
-        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector));
 
-        RelativeLayout home = findViewById(R.id.btnHome);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StatActivity.this, MainActivity.class);
-                intent.putExtra("difficulty", "easy");
-                startActivity(intent);
-            }
-        });
+        System.out.println("StatActivity");
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, MainActivity.class, gestureDetector, "StatActivity"));
+
+        ImageView textStat = findViewById(R.id.textStat);
+        if(Locale.getDefault().getDisplayLanguage().equals("français")){
+            textStat.setImageResource(R.drawable.statistiques);
+        } else {
+            textStat.setImageResource(R.drawable.statistics);
+        }
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        System.out.println("boubou1");
+    public boolean dispatchTouchEvent(MotionEvent event) {
         return gestureDetector.onTouchEvent(event);
     }
 

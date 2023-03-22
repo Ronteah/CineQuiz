@@ -1,7 +1,9 @@
 package com.example.cinequiz;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
+
+import com.example.cinequiz.utils.CustomGestureListener;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,17 +11,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import androidx.core.view.GestureDetectorCompat;
+import android.widget.ImageView;
 
-import com.example.cinequiz.utils.CustomGestureListener;
-
+import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
-    float x1, x2, y1, y2;
 
     private GestureDetectorCompat gestureDetector;
 
@@ -35,8 +32,15 @@ public class MainActivity extends AppCompatActivity {
         ImageButton medium = findViewById(R.id.btnMedium);
         ImageButton hard = findViewById(R.id.btnHard);
 
-        setContentView(R.layout.activity_main);
-        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector));
+        if(Locale.getDefault().getDisplayLanguage().equals("français")){
+            easy.setImageResource(R.drawable.btn_facile);
+            medium.setImageResource(R.drawable.btn_moyen);
+            hard.setImageResource(R.drawable.btn_difficile);
+        }
+
+        System.out.println("MainActivity");
+        System.out.println("My locale: "+ Locale.getDefault().getDisplayLanguage());
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector, "MainActivity"));
 
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event) {
         return gestureDetector.onTouchEvent(event);
     }
+
 
 //    private void buildDialog() {
 //        String prenom = this.prenomInput.getText().toString();

@@ -30,7 +30,7 @@
                 android:padding="20dp"
                 android:textAlignment="center"
                 tools:ignore="MissingConstraints"
-                tools:srcCompat="@drawable/moyen" />
+                tools:srcCompat="@drawable/medium" />
         </RelativeLayout>
 
         <ScrollView
@@ -55,10 +55,10 @@
                         android:layout_margin="30dp"
                         android:background="@null"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/modenormal"
+                        android:src="@drawable/normalmode"
                         tools:ignore="MissingConstraints"
                         tools:layout_editor_absoluteX="30dp"
-                        tools:srcCompat="@drawable/modenormal" />
+                        tools:srcCompat="@drawable/normalmode" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,10 +72,10 @@
                         android:layout_margin="30dp"
                         android:background="@null"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/modeblindtest"
+                        android:src="@drawable/blindtestmode"
                         tools:ignore="MissingConstraints"
                         tools:layout_editor_absoluteX="30dp"
-                        tools:srcCompat="@drawable/modeblindtest" />
+                        tools:srcCompat="@drawable/blindtestmode" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,10 +89,10 @@
                         android:layout_margin="30dp"
                         android:background="@null"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/modeimage"
+                        android:src="@drawable/imagemode"
                         tools:ignore="MissingConstraints"
                         tools:layout_editor_absoluteX="30dp"
-                        tools:srcCompat="@drawable/modeimage" />
+                        tools:srcCompat="@drawable/imagemode" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -106,10 +106,10 @@
                         android:layout_margin="30dp"
                         android:background="@null"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/modecelebrity"
+                        android:src="@drawable/celebritymode"
                         tools:ignore="MissingConstraints"
                         tools:layout_editor_absoluteX="30dp"
-                        tools:srcCompat="@drawable/modecelebrity" />
+                        tools:srcCompat="@drawable/celebritymode" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -123,10 +123,10 @@
                         android:layout_margin="30dp"
                         android:background="@null"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/modereplique"
+                        android:src="@drawable/repliquemode"
                         tools:ignore="MissingConstraints"
                         tools:layout_editor_absoluteX="30dp"
-                        tools:srcCompat="@drawable/modereplique" />
+                        tools:srcCompat="@drawable/repliquemode" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
