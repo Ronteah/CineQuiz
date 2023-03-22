@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_blue"
-    tools:context=".MainActivity">
+    tools:context=".StatActivity">
 
     <include layout="@layout/banner" />
 
@@ -31,7 +31,7 @@
                     android:layout_margin="5dp">
 
                     <ImageView
-                        android:id="@+id/textDifficulty"
+                        android:id="@+id/textStat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
@@ -74,7 +74,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Moyenne par Quiz"
+                                android:text="@string/moyenne_par_quiz"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF" />
 
@@ -107,7 +107,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Nombre de 10/10"
+                                android:text="@string/nombre_de_10_10"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF" />
 
@@ -142,6 +142,7 @@
         </ScrollView>
 
         <RelativeLayout
+            android:id="@+id/btnHome"
             android:layout_width="fill_parent"
             android:layout_height="53dp"
             android:layout_alignParentBottom="true"
@@ -156,7 +157,7 @@
                 android:layout_alignParentBottom="true"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center|left"
-                android:text="       « Accueil"
+                android:text="@string/accueil"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="italic" />

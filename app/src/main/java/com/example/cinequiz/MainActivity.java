@@ -1,16 +1,24 @@
 package com.example.cinequiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
+
+import com.example.cinequiz.utils.CustomGestureListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+
+    private GestureDetectorCompat gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,16 @@ public class MainActivity extends AppCompatActivity {
         ImageButton easy = findViewById(R.id.btnEasy);
         ImageButton medium = findViewById(R.id.btnMedium);
         ImageButton hard = findViewById(R.id.btnHard);
+
+        if(Locale.getDefault().getDisplayLanguage().equals("français")){
+            easy.setImageResource(R.drawable.btn_facile);
+            medium.setImageResource(R.drawable.btn_moyen);
+            hard.setImageResource(R.drawable.btn_difficile);
+        }
+
+        System.out.println("MainActivity");
+        System.out.println("My locale: "+ Locale.getDefault().getDisplayLanguage());
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector, "MainActivity"));
 
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
+    }
+
 
 //    private void buildDialog() {
 //        String prenom = this.prenomInput.getText().toString();
