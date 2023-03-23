@@ -16,102 +16,90 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="91dp">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="end"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="61dp" />
-
-            <TableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp">
+                android:clickable="false"
+                android:orientation="vertical" >
 
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageButton
-                            android:id="@+id/btnEasy"
-                            android:background="@null"
-                            android:layout_width="105dp"
-                            android:layout_height="115dp"
-                            app:srcCompat="@drawable/btn_easy"
-                            android:scaleType="fitCenter"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginBottom="25dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <ImageButton
+                        android:id="@+id/btnEasy"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:layout_height="145dp"
+                        android:layout_marginTop="15dp"
+                        app:srcCompat="@drawable/btn_easy" />
 
                     <ImageButton
                         android:id="@+id/btnMedium"
-                        android:background="@null"
-                        android:layout_width="105dp"
-                        android:layout_height="115dp"
-                        app:srcCompat="@drawable/btn_medium"
-                        android:scaleType="fitCenter"
-                        android:layout_marginBottom="25dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="145dp"
+                        android:layout_marginTop="15dp"
+                        app:srcCompat="@drawable/btn_medium" />
 
-                        <ImageButton
-                            android:id="@+id/btnHard"
-                            android:background="@null"
-                            android:layout_width="105dp"
-                            android:layout_height="115dp"
-                            app:srcCompat="@drawable/btn_hard"
-                            android:scaleType="fitCenter"
-                            android:layout_marginStart="130dp"
-                            android:layout_marginBottom="25dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </TableRow>
+                    <ImageButton
+                        android:id="@+id/btnHard"
+                        android:layout_width="match_parent"
+                        android:layout_height="145dp"
+                        android:layout_marginTop="15dp"
+                        app:srcCompat="@drawable/btn_hard" />
+                </LinearLayout>
 
-            </TableLayout>
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Univ"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="Universes"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="italic" />
+
+                    <ImageButton
+                        android:id="@+id/btnMarvel"
+                        android:layout_width="match_parent"
+                        android:layout_height="145dp"
+                        android:layout_marginTop="15dp"
+                        app:srcCompat="@drawable/marvel" />
+
+                    <ImageButton
+                        android:id="@+id/btnDC"
+                        android:layout_width="match_parent"
+                        android:layout_height="145dp"
+                        android:layout_marginTop="15dp"
+                        app:srcCompat="@drawable/dc" />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
+
+            </LinearLayout>
+        </ScrollView>
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="53dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true">
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:background="@color/dark_blue">
 
             <TextView
                 android:layout_width="fill_parent"

@@ -73,6 +73,7 @@ public class ModeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ModeActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }

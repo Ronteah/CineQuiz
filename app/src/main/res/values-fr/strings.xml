@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CineQuiz</string>
     <string name="moyenne_par_quiz">Moyenne par Quiz</string>
     <string name="nombre_de_10_10">Nombre de 10/10</string>
     <string name="accueil">"        « Accueil"</string>
+    <string name="blindtest">Blindtest</string>
+    <string name="image">Image</string>
+    <string name="normal">Normal</string>
+    <string name="movie_line">Réplique</string>
+    <string name="celebrity">Célébrité</string>
 </resources>
