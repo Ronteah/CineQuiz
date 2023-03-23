@@ -11,6 +11,10 @@ import androidx.core.view.GestureDetectorCompat;
 import java.util.List;
 import java.util.Objects;
 
+
+
+
+//ESSAYER AVEC LE GESTURE LISTENER DANS GAMEACTIVITY
 public class CustomGestureListener extends GestureDetector.SimpleOnGestureListener {
 
     private static final int SWIPE_THRESHOLD = 100;
