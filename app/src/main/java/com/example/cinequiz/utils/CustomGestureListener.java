@@ -55,7 +55,6 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
                         // Swipe de gauche à droite
 
                         System.out.println("Swipe >>>");
-
                         Intent intent = new Intent(activity, secondActivity);
                         activity.startActivity(intent);
                     }

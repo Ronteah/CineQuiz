@@ -75,5 +75,13 @@ public class ModeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        modeNormal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ModeActivity.this, GameActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

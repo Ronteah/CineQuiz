@@ -7,192 +7,161 @@
     android:background="@color/dark_blue"
     tools:context=".GameActivity">
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/banner_back" />
-
-    <Button
-        android:id="@+id/barre"
-        android:layout_width="119dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/material_dynamic_neutral40"
-        app:layout_constraintBottom_toTopOf="@+id/imageFilm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
-
-    <ImageView
-        android:id="@+id/imageFilm"
-        android:layout_width="366dp"
-        android:layout_height="252dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/layout_bg"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/question"
-        app:layout_constraintEnd_toEndOf="@+id/barre"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/barre"
-        app:layout_constraintTop_toBottomOf="@+id/include2"
-        app:srcCompat="@drawable/layout_bg"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="330dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="32dp"
-        android:autoText="false"
-        android:text="Comment s'appelle ce film ?"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/choix1"
-        app:layout_constraintEnd_toEndOf="@+id/imageFilm"
-        app:layout_constraintStart_toStartOf="@+id/imageFilm"
-        app:layout_constraintTop_toBottomOf="@+id/imageFilm" />
-
-    <Button
-        android:id="@+id/choix1"
-        android:layout_width="322dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="16dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/question"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/question"
-        app:layout_constraintTop_toBottomOf="@+id/question" />
-
-    <Button
-        android:id="@+id/choix2"
-        android:layout_width="322dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="16dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/choix1"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="@+id/choix1"
-        app:layout_constraintTop_toBottomOf="@+id/choix1" />
-
-    <Button
-        android:id="@+id/choix3"
-        android:layout_width="322dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="16dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/choix2"
-        app:layout_constraintHorizontal_bias="0.181"
-        app:layout_constraintStart_toStartOf="@+id/choix2"
-        app:layout_constraintTop_toBottomOf="@+id/choix2" />
-
-    <Button
-        android:id="@+id/choix4"
-        android:layout_width="322dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="16dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/choix3"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="@+id/choix3"
-        app:layout_constraintTop_toBottomOf="@+id/choix3" />
-
-    <TextView
-        android:id="@+id/temps"
-        android:layout_width="70dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="16dp"
-        android:autoText="false"
-        android:text="29"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="321dp"
-        android:layout_height="74dp"
-        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="634dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/banner_back" />
+
+        <ImageView
+            android:id="@+id/imageFilm"
+            android:layout_width="366dp"
+            android:layout_height="252dp"
+            android:background="@drawable/layout_bg"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="330dp"
+            android:layout_height="38dp"
+            android:autoText="false"
+            android:text="Comment s'appelle ce film ?"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/choix1"
+            android:layout_width="322dp"
+            android:layout_height="54dp"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/choix2"
+            android:layout_width="322dp"
+            android:layout_height="54dp"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/choix4"
+            android:layout_width="322dp"
+            android:layout_height="54dp"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/choix3"
+            android:layout_width="322dp"
+            android:layout_height="54dp"
+            android:text="Button" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="373dp"
+        android:layout_height="121dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/choix4"
-        app:layout_constraintStart_toStartOf="@+id/choix4">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/point1"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/temps"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/grey_dot"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+            android:autoText="false"
+            android:text="29"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/point2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="321dp"
+            android:layout_height="74dp"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/point3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+            <ImageView
+                android:id="@+id/point1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/grey_dot"
+                app:srcCompat="@android:drawable/alert_light_frame" />
 
-        <ImageView
-            android:id="@+id/point4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+            <ImageView
+                android:id="@+id/point2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/alert_light_frame" />
 
-        <ImageView
-            android:id="@+id/point5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+            <ImageView
+                android:id="@+id/point3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/alert_light_frame" />
 
-        <ImageView
-            android:id="@+id/point6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+            <ImageView
+                android:id="@+id/point4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/alert_light_frame" />
 
-        <ImageView
-            android:id="@+id/point7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+            <ImageView
+                android:id="@+id/point5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/alert_light_frame" />
 
-        <ImageView
-            android:id="@+id/point8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+            <ImageView
+                android:id="@+id/point6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/alert_light_frame" />
 
-        <ImageView
-            android:id="@+id/point9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+            <ImageView
+                android:id="@+id/point7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/alert_light_frame" />
 
-        <ImageView
-            android:id="@+id/point10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/alert_light_frame" />
+            <ImageView
+                android:id="@+id/point8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/alert_light_frame" />
+
+            <ImageView
+                android:id="@+id/point9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/alert_light_frame" />
+
+            <ImageView
+                android:id="@+id/point10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/alert_light_frame" />
+
+        </LinearLayout>
     </LinearLayout>
 
 
