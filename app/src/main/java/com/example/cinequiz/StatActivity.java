@@ -29,7 +29,7 @@ public class StatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stat);
 
         System.out.println("StatActivity");
-        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, MainActivity.class, gestureDetector, "StatActivity"));
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, MainActivity.class, gestureDetector, "<"));
 
         ImageView textStat = findViewById(R.id.textStat);
         if(Locale.getDefault().getDisplayLanguage().equals("français")){

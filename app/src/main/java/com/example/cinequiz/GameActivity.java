@@ -3,6 +3,7 @@ package com.example.cinequiz;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.cinequiz.utils.ActivityOnClickListener;
 import com.example.cinequiz.utils.CustomGestureListener;
 import com.squareup.picasso.Picasso;
 
@@ -29,6 +31,7 @@ public class GameActivity extends AppCompatActivity {
     private ImageButton back;
     private ImageView image;
     private TextView temps;
+    private String points;
 
     private GestureDetectorCompat gestureDetector;
 
@@ -39,9 +42,9 @@ public class GameActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide(); //hide the title bar
         setContentView(R.layout.activity_game);
 
-        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, GameActivity.class, gestureDetector, "GameActivity"));
-
         Intent intent = getIntent();
+        points = intent.getStringExtra("points");
+        System.out.println("bou" + points);
 
         listBtnChoix = new ArrayList<Button>();
         listChoix = new ArrayList<String>();
@@ -76,18 +79,22 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < listBtnChoix.size(); i++){
             listBtnChoix.get(i).setText(listChoix.get(i));
             if (listChoix.get(i).equals(reponse)){
-                listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
+
+                listBtnChoix.get(i).setOnClickListener(new ActivityOnClickListener(gestureDetector,this, true, points) {
+
                     @Override
                     public void onClick(View v) {
+                        super.onClick(v);
                         SetButtonsUnclickable();
                         v.setBackgroundColor(Color.GREEN);
                         temps.setText("Swipe >>>");
                     }
                 });
             }else {
-                listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
+                listBtnChoix.get(i).setOnClickListener(new ActivityOnClickListener(gestureDetector,this, false, points) {
                     @Override
                     public void onClick(View v) {
+                        super.onClick(v);
                         SetButtonsUnclickable();
                         v.setBackgroundColor(Color.RED);
                         temps.setText("Swipe >>>");
@@ -108,6 +115,5 @@ public class GameActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event) {
         return gestureDetector.onTouchEvent(event);
     }
-
 
 }

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("MainActivity");
         System.out.println("My locale: "+ Locale.getDefault().getDisplayLanguage());
-        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector, "MainActivity"));
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector, ">"));
 
         easy.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -24,13 +24,13 @@
             android:layout_width="366dp"
             android:layout_height="252dp"
             android:background="@drawable/layout_bg"
+            android:contentDescription="image du film"
             android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/question"
             android:layout_width="330dp"
             android:layout_height="38dp"
-            android:autoText="false"
             android:text="Comment s'appelle ce film ?"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -42,25 +42,29 @@
             android:id="@+id/choix1"
             android:layout_width="322dp"
             android:layout_height="54dp"
-            android:text="Button" />
+            android:text="Button"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/choix2"
             android:layout_width="322dp"
             android:layout_height="54dp"
-            android:text="Button" />
+            android:text="Button"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/choix4"
             android:layout_width="322dp"
             android:layout_height="54dp"
-            android:text="Button" />
+            android:text="Button"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/choix3"
             android:layout_width="322dp"
             android:layout_height="54dp"
-            android:text="Button" />
+            android:text="Button"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

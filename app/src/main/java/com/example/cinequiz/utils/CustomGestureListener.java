@@ -8,6 +8,7 @@ import android.content.Intent;
 
 import androidx.core.view.GestureDetectorCompat;
 
+import java.util.List;
 import java.util.Objects;
 
 public class CustomGestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -19,15 +20,28 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
     private final Class secondActivity;
     private GestureDetectorCompat gestureDetector;
 
-    private String actualActivity;
+    private String sens;
+    private String points;
 
-    public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String actualActivity) {
-        System.out.println("CustomGestureListener: " + actualActivity);
+    public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String sens) {
+        System.out.println("CustomGestureListener: " + sens);
 
         this.activity = activity;
         this.secondActivity = secondActivity;
         this.gestureDetector = gestureDetector;
-        this.actualActivity = actualActivity;
+        this.sens = sens;
+        this.points = null;
+    }
+
+
+    public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String sens, String points) {
+        System.out.println("CustomGestureListener: " + sens);
+
+        this.activity = activity;
+        this.secondActivity = secondActivity;
+        this.gestureDetector = gestureDetector;
+        this.sens = sens;
+        this.points = points;
     }
 
     @Override
@@ -41,21 +55,27 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
             System.out.println("Y: " + diffY);
             System.out.println("X: " + diffX);
 
+            Intent intent = new Intent(activity, secondActivity);
+
+
+
+            if (points != null) {
+                intent.putExtra("points", points);
+            }
+
             if (Math.abs(diffX) > Math.abs(diffY)) {
                 if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX < 0 && !Objects.equals(this.actualActivity, "StatActivity")) {
+                    if (diffX < 0 && this.sens.equals(">")) {
                         // Swipe de droite à gauche
 
-                        System.out.println("Swipe <<<");
+                        System.out.println("Swipe >>>");
 
-                        Intent intent = new Intent(activity, secondActivity);
                         activity.startActivity(intent);
                     }
-                    if (diffX > 0 && !Objects.equals(this.actualActivity, "MainActivity")) {
+                    if (diffX > 0 && this.sens.equals("<")) {
                         // Swipe de gauche à droite
 
-                        System.out.println("Swipe >>>");
-                        Intent intent = new Intent(activity, secondActivity);
+                        System.out.println("Swipe <<<");
                         activity.startActivity(intent);
                     }
                 }
