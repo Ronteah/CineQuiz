@@ -9,68 +9,107 @@
 
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="634dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/banner_back" />
+        <include layout="@layout/banner_game" />
 
         <ImageView
             android:id="@+id/imageFilm"
-            android:layout_width="366dp"
-            android:layout_height="252dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="25dp"
             android:background="@drawable/layout_bg"
             android:contentDescription="image du film"
             android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/question"
-            android:layout_width="330dp"
-            android:layout_height="38dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
             android:text="Comment s'appelle ce film ?"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/choix1"
-            android:layout_width="322dp"
+            android:layout_width="match_parent"
             android:layout_height="54dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="@color/purple_200"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
             android:text="Button"
-            android:textColor="@color/white" />
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/choix2"
-            android:layout_width="322dp"
+            android:layout_width="match_parent"
             android:layout_height="54dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="@color/red"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
             android:text="Button"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/choix4"
-            android:layout_width="322dp"
-            android:layout_height="54dp"
-            android:text="Button"
-            android:textColor="@color/white" />
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/choix3"
-            android:layout_width="322dp"
+            android:layout_width="match_parent"
             android:layout_height="54dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="@color/green"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
             android:text="Button"
-            android:textColor="@color/white" />
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            tools:ignore="RtlCompat" />
+
+        <Button
+            android:id="@+id/choix4"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="@color/teal_700"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:text="Button"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            tools:ignore="RtlCompat" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="373dp"
-        android:layout_height="121dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,19 +118,22 @@
 
         <TextView
             android:id="@+id/temps"
-            android:layout_width="304dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autoText="false"
-            android:text="29"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginBottom="5dp"
+            android:text="30"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+            android:textSize="48sp"
+            android:textStyle="italic" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="268dp"
-            android:layout_height="73dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="80dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <ImageView
