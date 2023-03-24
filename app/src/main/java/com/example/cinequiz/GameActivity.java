@@ -1,5 +1,6 @@
 package com.example.cinequiz;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
@@ -84,8 +85,13 @@ public class GameActivity extends AppCompatActivity {
 
 
 
-        if (points.length() < 11) {
+        if (points.length() > 9) {
+            //ecran de victoire
 
+            Intent intent = new Intent(GameActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }else {
             listPoints.get(points.length()).setImageResource(R.drawable.white_dot);
             listPoints.get(points.length()).getLayoutParams().width = 120;
 
@@ -155,6 +161,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (gestureDetector == null) return false;
         return gestureDetector.onTouchEvent(event);
     }
 
