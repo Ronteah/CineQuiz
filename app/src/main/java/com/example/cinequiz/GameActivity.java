@@ -86,11 +86,14 @@ public class GameActivity extends AppCompatActivity {
 
         for (int i = 0; i < points.length(); i++){
             if (points.charAt(i) == 'o'){
-                listPoints.get(i).setImageResource(R.drawable.oscar);
+                listPoints.get(i).setImageResource(R.drawable.green_dot);
             }else {
-                listPoints.get(i).setImageResource(R.drawable.home);
+                listPoints.get(i).setImageResource(R.drawable.red_dot);
             }
         }
+
+        listPoints.get(points.length()).getLayoutParams().width = 60;
+        listPoints.get(points.length()).requestLayout();
     }
 
     private void InitialiseList(){
