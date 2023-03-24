@@ -75,12 +75,14 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
                         System.out.println("Swipe >>>");
 
                         activity.startActivity(intent);
+                        activity.finish();
                     }
                     if (diffX > 0 && this.sens.equals("<")) {
                         // Swipe de gauche à droite
 
                         System.out.println("Swipe <<<");
                         activity.startActivity(intent);
+                        activity.finish();
                     }
                 }
             }

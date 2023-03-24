@@ -80,7 +80,7 @@ public class ModeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ModeActivity.this, GameActivity.class);
-                intent.putExtra("points", "marche pas");
+                intent.putExtra("points", "");
                 startActivity(intent);
             }
         });
