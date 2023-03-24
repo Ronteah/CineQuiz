@@ -8,6 +8,10 @@ import android.content.Intent;
 
 import androidx.core.view.GestureDetectorCompat;
 
+import com.example.cinequiz.R;
+
+import com.example.cinequiz.R;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -75,14 +79,14 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
                         System.out.println("Swipe >>>");
 
                         activity.startActivity(intent);
-                        activity.finish();
+                        activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     }
                     if (diffX > 0 && this.sens.equals("<")) {
                         // Swipe de gauche à droite
 
                         System.out.println("Swipe <<<");
                         activity.startActivity(intent);
-                        activity.finish();
+                        activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     }
                 }
             }
