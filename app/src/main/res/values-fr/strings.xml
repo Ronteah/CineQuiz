@@ -9,4 +9,6 @@
     <string name="celebrity">Célébrité</string>
     <string name="universes">Univers</string>
     <string name="dialog_exit">Êtes-vous sûr de vouloir quitter la partie ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
 </resources>

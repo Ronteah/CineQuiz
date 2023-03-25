@@ -10,4 +10,6 @@
     <string name="celebrity">Celebrity</string>
     <string name="universes">Universes</string>
     <string name="dialog_exit">Are you sure you want to exit during the game ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

@@ -3,12 +3,18 @@ package com.example.cinequiz;
 import androidx.appcompat.app.AlertDialog;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.BlendMode;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -125,13 +131,15 @@ public class GameActivity extends AppCompatActivity {
 
         if (points.length() > 9) {
             //ecran de victoire
+            System.out.println("Partie terminée !");
 
             Intent intent = new Intent(GameActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-        }else {
+
+        } else {
             listPoints.get(points.length()).setImageResource(R.drawable.white_dot);
-            listPoints.get(points.length()).getLayoutParams().width = 120;
+            listPoints.get(points.length()).getLayoutParams().width = 110;
 
             for (int i = 0; i < points.length(); i++){
                 if (points.charAt(i) == 'o'){
@@ -155,6 +163,8 @@ public class GameActivity extends AppCompatActivity {
         listChoix.add("choix 3");
         listChoix.add("choix 4");
 
+        Resources res = this.getResources();
+
         for (int i = 0; i < listBtnChoix.size(); i++){
             listBtnChoix.get(i).setText(listChoix.get(i));
             if (listChoix.get(i).equals(reponse)){
@@ -166,7 +176,16 @@ public class GameActivity extends AppCompatActivity {
                         points += "o";
                         CreateGestureDetector();
                         SetButtonsUnclickable();
-                        v.setBackgroundColor(Color.GREEN);
+
+                        v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
+
+                        for (int i = 0; i < listBtnChoix.size(); i++){
+                            listBtnChoix.get(i).setText(listChoix.get(i));
+                            if (!listChoix.get(i).equals(reponse)){
+                                listBtnChoix.get(i).setAlpha((float) 0.2);
+                            }
+                        }
+
                         temps.setText("Swipe >>>");
                     }
                 });
@@ -178,7 +197,19 @@ public class GameActivity extends AppCompatActivity {
                         points += "x";
                         CreateGestureDetector();
                         SetButtonsUnclickable();
-                        v.setBackgroundColor(Color.RED);
+
+                        v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.red)));
+
+                        for (int i = 0; i < listBtnChoix.size(); i++){
+                            listBtnChoix.get(i).setText(listChoix.get(i));
+                            if (!listChoix.get(i).equals(reponse) && !listBtnChoix.get(i).equals(v)){
+                                listBtnChoix.get(i).setAlpha((float) 0.2);
+                            }
+                            if (listChoix.get(i).equals(reponse)){
+                                listBtnChoix.get(i).setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
+                            }
+                        }
+
                         temps.setText("Swipe >>>");
                     }
                 });
