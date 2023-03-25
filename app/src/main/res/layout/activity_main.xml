@@ -16,103 +16,99 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="91dp">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="387dp"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/btnEasy"
+                            android:layout_width="match_parent"
+                            android:layout_height="145dp"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/btn_easy" />
+
+                        <ImageButton
+                            android:id="@+id/btnMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="145dp"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/btn_medium" />
+
+                        <ImageButton
+                            android:id="@+id/btnHard"
+                            android:layout_width="match_parent"
+                            android:layout_height="145dp"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/btn_hard" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Univ"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="@string/universes"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
+                            android:textSize="24sp"
+                            android:textStyle="italic" />
+
+                        <ImageButton
+                            android:id="@+id/btnMarvel"
+                            android:layout_width="match_parent"
+                            android:layout_height="145dp"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/marvel" />
+
+                        <ImageButton
+                            android:id="@+id/btnDC"
+                            android:layout_width="match_parent"
+                            android:layout_height="145dp"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/dc" />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                </LinearLayout>
+            </ScrollView>
+
+            <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:orientation="vertical" >
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:alpha="0.2"
+                app:srcCompat="@drawable/swipe" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/btnEasy"
-                        android:layout_width="match_parent"
-                        android:layout_height="145dp"
-                        android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/btn_easy" />
-
-                    <ImageButton
-                        android:id="@+id/btnMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="145dp"
-                        android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/btn_medium" />
-
-                    <ImageButton
-                        android:id="@+id/btnHard"
-                        android:layout_width="match_parent"
-                        android:layout_height="145dp"
-                        android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/btn_hard" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/Univ"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="sans-serif-black"
-                        android:text="Universes"
-                        android:textAlignment="center"
-                        android:textColor="#FFFFFF"
-                        android:textSize="24sp"
-                        android:textStyle="italic" />
-
-                    <ImageButton
-                        android:id="@+id/btnMarvel"
-                        android:layout_width="match_parent"
-                        android:layout_height="145dp"
-                        android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/marvel" />
-
-                    <ImageButton
-                        android:id="@+id/btnDC"
-                        android:layout_width="match_parent"
-                        android:layout_height="145dp"
-                        android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/dc" />
-
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp" />
-
-            </LinearLayout>
-        </ScrollView>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="53dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:gravity="center"
-            android:background="@color/dark_blue">
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:fontFamily="sans-serif-black"
-                android:gravity="center|right"
-                android:text="Swipe »        "
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:textStyle="italic" />
-        </RelativeLayout>
+        </LinearLayout>
 
     </RelativeLayout>
 

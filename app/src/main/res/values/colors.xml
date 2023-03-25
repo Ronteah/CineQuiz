@@ -11,5 +11,6 @@
     <color name="bg_blue">#170C21</color>
     <color name="light_blue">#261437</color>
     <color name="red">#D72638</color>
+    <color name="green">#38D738</color>
     <color name="yellow">#FFDA44</color>
 </resources>

@@ -7,11 +7,14 @@ import com.example.cinequiz.utils.CustomGestureListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -77,22 +80,4 @@ public class MainActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event) {
         return gestureDetector.onTouchEvent(event);
     }
-
-
-//    private void buildDialog() {
-//        String prenom = this.prenomInput.getText().toString();
-//        String nom = this.nomInput.getText().toString();
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder((this));
-//        builder.setMessage("nom: " + nom + "\nprenom: " + prenom)
-//                .setTitle("Info")
-//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // Action à effectuer lorsque l'utilisateur clique sur le bouton OK
-//                    }
-//                });
-//
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
-//    }
 }

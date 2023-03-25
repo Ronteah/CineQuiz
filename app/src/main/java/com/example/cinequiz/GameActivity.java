@@ -1,14 +1,19 @@
 package com.example.cinequiz;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -53,11 +58,44 @@ public class GameActivity extends AppCompatActivity {
 
         reponse = "choix 1";
 
+        Dialog dialog = new Dialog(GameActivity.this);
+
         back = findViewById(R.id.btnBack);
-        back.setOnClickListener(v -> {
-            Intent intent1 = new Intent(GameActivity.this, MainActivity.class);
-            startActivity(intent1);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.setContentView(R.layout.dialog_layout);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.setCancelable(false);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+                Button btnYes = dialog.findViewById(R.id.btnYes);
+                Button btnNo = dialog.findViewById(R.id.btnNo);
+
+                btnYes.setBackgroundColor(Color.GREEN);
+                btnNo.setBackgroundColor(Color.RED);
+
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Intent intent1 = new Intent(GameActivity.this, MainActivity.class);
+                        startActivity(intent1);
+                    }
+                });
+
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
         });
+
 
         image = findViewById(R.id.imageFilm);
         String imageUrl = "https://www.liberation.fr/resizer/2vCD5EFaJW82pYD8ax7xGr3dQCs=/600x0/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/liberation/QYURNGWR2KB6JOKDXAW6LTMQW4.jpg";
