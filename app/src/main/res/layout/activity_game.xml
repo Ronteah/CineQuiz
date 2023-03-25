@@ -64,10 +64,10 @@
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="Button"
-                app:backgroundTint="@android:color/holo_blue_dark"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="italic"
+                app:backgroundTint="@android:color/holo_blue_dark"
                 tools:ignore="RtlCompat" />
 
             <Space
@@ -82,13 +82,13 @@
                 android:layout_marginHorizontal="25dp"
                 android:alpha="500"
                 android:background="@drawable/button_bg"
-                app:backgroundTint="@android:color/holo_red_dark"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="Button"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="italic"
+                app:backgroundTint="@android:color/holo_red_dark"
                 tools:ignore="RtlCompat" />
 
             <Space
@@ -103,13 +103,13 @@
                 android:layout_marginHorizontal="25dp"
                 android:alpha="500"
                 android:background="@drawable/button_bg"
-                app:backgroundTint="@android:color/holo_green_dark"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="Button"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="italic"
+                app:backgroundTint="@android:color/holo_green_dark"
                 tools:ignore="RtlCompat" />
 
             <Space
@@ -124,14 +124,20 @@
                 android:layout_marginHorizontal="25dp"
                 android:alpha="500"
                 android:background="@drawable/button_bg"
-                app:backgroundTint="@android:color/holo_orange_dark"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="Button"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="italic"
+                app:backgroundTint="@android:color/holo_orange_dark"
                 tools:ignore="RtlCompat" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
     </LinearLayout>
