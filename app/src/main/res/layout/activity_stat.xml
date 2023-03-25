@@ -31,8 +31,9 @@
                 app:srcCompat="@drawable/swipe" />
 
             <ScrollView
-                android:layout_width="351dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="0.2"
                 android:scrollbars="none">
 
                 <LinearLayout

@@ -23,8 +23,9 @@
 
             <ScrollView
                 android:id="@+id/scrollView"
-                android:layout_width="376dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="0.1"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -43,6 +44,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="145dp"
                             android:layout_marginTop="15dp"
+                            android:layout_weight="0.1"
                             app:srcCompat="@drawable/btn_easy" />
 
                         <ImageButton
