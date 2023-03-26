@@ -26,30 +26,34 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
     private final Activity activity;
 
     private final Class secondActivity;
-    private GestureDetectorCompat gestureDetector;
+    private final GestureDetectorCompat gestureDetector;
 
-    private String sens;
-    private String points;
+    private final String sens;
+    private final String points;
+    private final String mode;
+    private final String difficulty;
 
     public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String sens) {
-        System.out.println("CustomGestureListener: " + sens);
 
         this.activity = activity;
         this.secondActivity = secondActivity;
         this.gestureDetector = gestureDetector;
         this.sens = sens;
         this.points = null;
+        this.mode = null;
+        this.difficulty = null;
     }
 
 
-    public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String sens, String points) {
-        System.out.println("CustomGestureListener: " + sens);
+    public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String sens, String points, String mode, String difficulty) {
 
         this.activity = activity;
         this.secondActivity = secondActivity;
         this.gestureDetector = gestureDetector;
         this.sens = sens;
         this.points = points;
+        this.mode = mode;
+        this.difficulty = difficulty;
     }
 
     @Override
@@ -60,9 +64,6 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
             float diffY = e2.getY() - e1.getY();
             float diffX = e2.getX() - e1.getX();
 
-            System.out.println("Y: " + diffY);
-            System.out.println("X: " + diffX);
-
             Intent intent = new Intent(activity, secondActivity);
 
 
@@ -71,22 +72,29 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
                 intent.putExtra("points", points);
             }
 
+            if (mode != null) {
+                intent.putExtra("mode", mode);
+            }
+
+            if (difficulty != null) {
+                intent.putExtra("difficulty", difficulty);
+            }
+
             if (Math.abs(diffX) > Math.abs(diffY)) {
                 if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                     if (diffX < 0 && this.sens.equals(">")) {
                         // Swipe de droite à gauche
 
-                        System.out.println("Swipe >>>");
-
                         activity.startActivity(intent);
                         activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        activity.finish();
                     }
                     if (diffX > 0 && this.sens.equals("<")) {
                         // Swipe de gauche à droite
 
-                        System.out.println("Swipe <<<");
                         activity.startActivity(intent);
                         activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                        activity.finish();
                     }
                 }
             }

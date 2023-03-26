@@ -1,4 +1,6 @@
 package com.example.cinequiz;
+import com.example.cinequiz.utils.OscarCounter;
+import com.example.cinequiz.utils.RepCounter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,12 +10,17 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Locale;
 import java.util.Objects;
 
 public class ModeActivity extends AppCompatActivity {
 
+    private TextView nbOscars;
+
+    @Override
+    public void onBackPressed() {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +40,13 @@ public class ModeActivity extends AppCompatActivity {
         ImageButton modeCelebrity = findViewById(R.id.modeCelebrity);
         ImageButton modeReplique = findViewById(R.id.modeReplique);
 
-        System.out.println(difficulty);
+
+        nbOscars = findViewById(R.id.nbOscars);
+        nbOscars.setText(OscarCounter.getNbOscarsString());
+
+        RepCounter.resetBonneRep();
+        RepCounter.resetTotalRep();
+
 
         if(Locale.getDefault().getDisplayLanguage().equals("français")){
             switch (difficulty) {
@@ -74,6 +87,7 @@ public class ModeActivity extends AppCompatActivity {
                 Intent intent = new Intent(ModeActivity.this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
             }
         });
 
@@ -82,8 +96,60 @@ public class ModeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ModeActivity.this, GameActivity.class);
                 intent.putExtra("points", "");
+                intent.putExtra("mode", "normal");
+                intent.putExtra("difficulty", difficulty);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        modeBlindtest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ModeActivity.this, GameActivity.class);
+                intent.putExtra("points", "");
+                intent.putExtra("mode", "blindtest");
+                intent.putExtra("difficulty", difficulty);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        modeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ModeActivity.this, GameActivity.class);
+                intent.putExtra("points", "");
+                intent.putExtra("mode", "image");
+                intent.putExtra("difficulty", difficulty);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        modeCelebrity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ModeActivity.this, GameActivity.class);
+                intent.putExtra("points", "");
+                intent.putExtra("mode", "celebrity");
+                intent.putExtra("difficulty", difficulty);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        modeReplique.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ModeActivity.this, GameActivity.class);
+                intent.putExtra("points", "");
+                intent.putExtra("mode", "replique");
+                intent.putExtra("difficulty", difficulty);
+                startActivity(intent);
+                finish();
             }
         });
     }
+
 }

@@ -19,7 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
             <ScrollView
                 android:id="@+id/scrollView"
@@ -41,24 +42,32 @@
 
                         <ImageButton
                             android:id="@+id/btnEasy"
+                            android:scaleType="centerCrop"
                             android:layout_width="match_parent"
                             android:layout_height="145dp"
                             android:layout_marginTop="15dp"
                             android:layout_weight="0.1"
+                            android:background="#00FFFFFF"
                             app:srcCompat="@drawable/btn_easy" />
 
                         <ImageButton
                             android:id="@+id/btnMedium"
+                            android:scaleType="centerCrop"
                             android:layout_width="match_parent"
                             android:layout_height="145dp"
                             android:layout_marginTop="15dp"
+                            android:layout_weight="0.1"
+                            android:background="#00FFFFFF"
                             app:srcCompat="@drawable/btn_medium" />
 
                         <ImageButton
                             android:id="@+id/btnHard"
+                            android:scaleType="centerCrop"
                             android:layout_width="match_parent"
                             android:layout_height="145dp"
                             android:layout_marginTop="15dp"
+                            android:layout_weight="0.1"
+                            android:background="#00FFFFFF"
                             app:srcCompat="@drawable/btn_hard" />
                     </LinearLayout>
 
@@ -72,25 +81,32 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
+                            android:layout_marginStart="20dp"
                             android:fontFamily="sans-serif-black"
                             android:text="@string/universes"
-                            android:textAlignment="center"
+                            android:textAlignment="textStart"
                             android:textColor="#FFFFFF"
                             android:textSize="24sp"
                             android:textStyle="italic" />
 
                         <ImageButton
                             android:id="@+id/btnMarvel"
+                            android:scaleType="centerCrop"
                             android:layout_width="match_parent"
                             android:layout_height="145dp"
+                            android:layout_weight="0.1"
                             android:layout_marginTop="15dp"
+                            android:background="#00FFFFFF"
                             app:srcCompat="@drawable/marvel" />
 
                         <ImageButton
                             android:id="@+id/btnDC"
+                            android:scaleType="centerCrop"
                             android:layout_width="match_parent"
                             android:layout_height="145dp"
+                            android:layout_weight="0.1"
                             android:layout_marginTop="15dp"
+                            android:background="#00FFFFFF"
                             app:srcCompat="@drawable/dc" />
 
                     </LinearLayout>

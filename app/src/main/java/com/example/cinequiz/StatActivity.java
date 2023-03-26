@@ -1,7 +1,10 @@
 package com.example.cinequiz;
+import com.example.cinequiz.utils.OscarCounter;
+import com.example.cinequiz.utils.RepCounter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.core.view.GestureDetectorCompat;
 
@@ -21,6 +25,20 @@ public class StatActivity extends AppCompatActivity {
 
     private GestureDetectorCompat gestureDetector;
 
+    private TextView nbOscars;
+    private TextView textTotal;
+    private TextView mean;
+    private TextView nbPerfect;
+    private TextView nbNormal;
+    private TextView nbBlindtest;
+    private TextView nbImage;
+    private TextView nbCelebrity;
+    private TextView nbReplique;
+
+    @Override
+    public void onBackPressed() {}
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +46,6 @@ public class StatActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide(); //hide the title bar
         setContentView(R.layout.activity_stat);
 
-        System.out.println("StatActivity");
         gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, MainActivity.class, gestureDetector, "<"));
 
         ImageView textStat = findViewById(R.id.textStat);
@@ -37,6 +54,26 @@ public class StatActivity extends AppCompatActivity {
         } else {
             textStat.setImageResource(R.drawable.statistics);
         }
+
+        nbOscars = findViewById(R.id.nbOscars);
+        textTotal = findViewById(R.id.textTotal);
+        mean = findViewById(R.id.mean);
+        nbPerfect = findViewById(R.id.nbPerfect);
+        nbNormal = findViewById(R.id.nbNormal);
+        nbBlindtest = findViewById(R.id.nbBlindtest);
+        nbImage = findViewById(R.id.nbImage);
+        nbCelebrity = findViewById(R.id.nbCelebrity);
+        nbReplique = findViewById(R.id.nbReplique);
+
+        nbOscars.setText(OscarCounter.getNbOscarsString());
+        textTotal.setText("Total = " + OscarCounter.getNbOscars());
+        mean.setText("" + RepCounter.getMean());
+        nbPerfect.setText("" + RepCounter.getNbPerfect());
+        nbNormal.setText(OscarCounter.getNbNormalString());
+        nbBlindtest.setText(OscarCounter.getNbBlindtestString());
+        nbImage.setText(OscarCounter.getNbImageString());
+        nbCelebrity.setText(OscarCounter.getNbCelebrityString());
+        nbReplique.setText(OscarCounter.getNbRepliqueString());
     }
 
     @Override

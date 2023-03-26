@@ -169,6 +169,7 @@
                             android:textStyle="italic" />
 
                         <TextView
+                            android:id="@+id/textTotal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-black"
@@ -363,7 +364,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:fontFamily="sans-serif-black"
-                                        android:text="@string/movie_line"
+                                        android:text="@string/celebrity"
                                         android:textAlignment="center"
                                         android:textColor="#FFFFFF"
                                         android:textSize="18sp"
@@ -375,7 +376,7 @@
                                         android:layout_weight="1" />
 
                                     <TextView
-                                        android:id="@+id/nbReplique"
+                                        android:id="@+id/nbCelebrity"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginEnd="30dp"
@@ -416,7 +417,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:fontFamily="sans-serif-black"
-                                        android:text="@string/celebrity"
+                                        android:text="@string/movie_line"
                                         android:textAlignment="center"
                                         android:textColor="#FFFFFF"
                                         android:textSize="18sp"
@@ -428,7 +429,7 @@
                                         android:layout_weight="1" />
 
                                     <TextView
-                                        android:id="@+id/nbCelebrity"
+                                        android:id="@+id/nbReplique"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginEnd="30dp"
