@@ -15,6 +15,7 @@ public class PreferencesSaver {
         editor.putInt("nbReplique", OscarCounter.getNbReplique());
 
         editor.putFloat("mean", (float) RepCounter.getMean());
+        editor.putInt("scoresSize", RepCounter.getScoresSize());
         editor.putInt("nbPerfect", RepCounter.getNbPerfect());
 
         editor.apply();
@@ -29,6 +30,7 @@ public class PreferencesSaver {
         OscarCounter.setNbReplique(sp.getInt("nbReplique", 0));
 
         RepCounter.addScore((double) sp.getFloat("mean", 0));
+        RepCounter.setScores(sp.getInt("scoresSize", 0));
         RepCounter.setNbPerfect(sp.getInt("nbPerfect", 0));
     }
 }

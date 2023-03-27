@@ -30,8 +30,16 @@
                 android:elevation="10dp"
                 app:cardCornerRadius="30dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:translationZ="10dp"
+                    android:background="@color/dark_blue"/>
+
+
                 <nl.dionsegijn.konfetti.xml.KonfettiView
                     android:id="@+id/KonfettiView"
+                    android:translationZ="90dp"
                     android:layout_width="match_parent"
                     android:layout_height="395dp"/>
 
@@ -39,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:background="@color/dark_blue"
+                    android:translationZ="190dp"
                     android:orientation="vertical">
 
                     <TextView

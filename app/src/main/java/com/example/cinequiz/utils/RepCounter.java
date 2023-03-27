@@ -64,6 +64,16 @@ public class RepCounter {
         return mean;
     }
 
+    public static int getScoresSize() {
+        return scores.size();
+    }
+
+    public static void setScores(int scoresSize) {
+        for (int i=0; i < scoresSize; i++){
+            addScore(RepCounter.mean);
+        }
+    }
+
     public static void addScore(double score) {
         scores.add(score);
         mean = 0.0;

@@ -17,15 +17,21 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.Interpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cinequiz.utils.CustomGestureListener;
@@ -61,10 +67,12 @@ public class GameActivity extends AppCompatActivity {
     private String points;
     private String mode;
     private String difficulty;
+    private LinearLayout bgTimer;
+
+    private Resources res;
 
     private GestureDetectorCompat gestureDetector;
     SharedPreferences sharedPreferences;
-    private KonfettiView konfettiView = null;
 
     @Override
     public void onBackPressed() {}
@@ -77,6 +85,8 @@ public class GameActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide(); //hide the title bar
         setContentView(R.layout.activity_game);
 
+        res = this.getResources();
+
         Intent intent = getIntent();
         points = intent.getStringExtra("points");
         mode = intent.getStringExtra("mode");
@@ -88,6 +98,8 @@ public class GameActivity extends AppCompatActivity {
 
         reponse = "choix 1";
 
+        temps = findViewById(R.id.timer);
+
         Dialog dialog = new Dialog(GameActivity.this);
 
         back = findViewById(R.id.btnBack);
@@ -97,6 +109,7 @@ public class GameActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.dialog_layout);
                 dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 dialog.setCancelable(false);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
                 Button btnYes = dialog.findViewById(R.id.btnYes);
@@ -140,20 +153,27 @@ public class GameActivity extends AppCompatActivity {
         String imageUrl = "https://www.liberation.fr/resizer/2vCD5EFaJW82pYD8ax7xGr3dQCs=/600x0/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/liberation/QYURNGWR2KB6JOKDXAW6LTMQW4.jpg";
         Picasso.get().load(imageUrl).into(image);
 
-        LayoutInflater victory = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams") View victoyView = victory.inflate(R.layout.victory_layout, null);
-
-        konfettiView = victoyView.findViewById(R.id.KonfettiView);
-
-        temps = findViewById(R.id.temps);
-
         nbRep = findViewById(R.id.nbRep);
         nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
+
+        //Fond qui descend en fonction du temps
+        bgTimer = findViewById(R.id.bgTimer);
+
+        TranslateAnimation animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 0f, // translation x de départ
+                Animation.RELATIVE_TO_SELF, 0f, // translation x d'arrivée
+                Animation.RELATIVE_TO_SELF, 0f, // translation y de départ
+                Animation.RELATIVE_TO_SELF, 1f // translation y d'arrivée
+        );
+        animation.setDuration(30000); // durée de l'animation en millisecondes
+        animation.setStartOffset(0); // délai avant le démarrage de l'animation en millisecondes
+
+        bgTimer.startAnimation(animation);
+
+
         InitialiseList();
-
         InitialisePoints();
-
     }
 
     private int NombreOscars(){
@@ -207,12 +227,46 @@ public class GameActivity extends AppCompatActivity {
         listBtnChoix.add(findViewById(R.id.choix3));
         listBtnChoix.add(findViewById(R.id.choix4));
 
+        CountDownTimer timer = new CountDownTimer(30000, 1000) {
+
+            @SuppressLint("SetTextI18n")
+            public void onTick(long millisUntilFinished) {
+                temps.setText("" + (millisUntilFinished / 1000));
+            }
+
+            @SuppressLint({"SetTextI18n", "ResourceAsColor"})
+            public void onFinish() {
+                points += "x";
+                CreateGestureDetector();
+                SetButtonsUnclickable();
+
+                bgTimer.setAlpha(0);
+
+                for (int i = 0; i < listBtnChoix.size(); i++){
+                    if (listChoix.get(i).equals(reponse)){
+                        listBtnChoix.get(i).setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
+                    } else {
+                        listBtnChoix.get(i).setAlpha((float) 0.2);
+                    }
+                }
+
+                RepCounter.addTotalRep();
+                nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
+
+                if(RepCounter.getTotalRep() == 10) {
+                    GameFinisher();
+                } else {
+                    temps.setText("Swipe >>>");
+                }
+            }
+        };
+
+        timer.start();
+
         listChoix.add("choix 1");
         listChoix.add("choix 2");
         listChoix.add("choix 3");
         listChoix.add("choix 4");
-
-        Resources res = this.getResources();
 
         for (int i = 0; i < listBtnChoix.size(); i++){
             listBtnChoix.get(i).setText(listChoix.get(i));
@@ -226,6 +280,8 @@ public class GameActivity extends AppCompatActivity {
                         points += "o";
                         CreateGestureDetector();
                         SetButtonsUnclickable();
+
+                        timer.cancel();
 
                         v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
 
@@ -257,6 +313,8 @@ public class GameActivity extends AppCompatActivity {
                         points += "x";
                         CreateGestureDetector();
                         SetButtonsUnclickable();
+
+                        timer.cancel();
 
                         v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.red)));
 
@@ -316,7 +374,6 @@ public class GameActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
         PreferencesSaver.SavePreferences(sharedPreferences);
 
-        rain();
         VictoryScreen();
         temps.setText("");
     }
@@ -328,9 +385,13 @@ public class GameActivity extends AppCompatActivity {
         GestureDetectorCompat gestureDetector1 = CreateGestureDetectorVictory();
 
         dialog.setContentView(R.layout.victory_layout);
+
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        //GestureListener
         dialog.getWindow().getDecorView().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -342,6 +403,8 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
+
+        KonfettiView konfettiView = dialog.findViewById(R.id.KonfettiView);
 
         TextView score = dialog.findViewById(R.id.score);
         TextView scoreComment = dialog.findViewById(R.id.scoreComment);
@@ -373,6 +436,8 @@ public class GameActivity extends AppCompatActivity {
         }
 
         dialog.show();
+
+        rain(konfettiView);
     }
 
     private void CreateGestureDetector(){
@@ -395,8 +460,7 @@ public class GameActivity extends AppCompatActivity {
         return gestureDetector.onTouchEvent(event);
     }
 
-    public void rain() {
-        System.out.println("Pluie !!!");
+    public void rain(KonfettiView konfettiView) {
         EmitterConfig emitterConfig = new Emitter(5, TimeUnit.SECONDS).perSecond(100);
         konfettiView.start(
                 new PartyFactory(emitterConfig)
