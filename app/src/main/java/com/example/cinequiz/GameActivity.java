@@ -60,7 +60,6 @@ import nl.dionsegijn.konfetti.core.Angle;
 public class GameActivity extends AppCompatActivity {
 
     private List<Button> listBtnChoix;
-    private List<String> listChoix;
     private List<ImageView> listPoints;
     private int reponse;
     private ImageButton back;
@@ -106,7 +105,6 @@ public class GameActivity extends AppCompatActivity {
         difficulty = intent.getStringExtra("difficulty");
 
         this.listBtnChoix = new ArrayList<>();
-        this.listChoix = new ArrayList<>();
         this.listPoints = new ArrayList<>();
         this.facile = new ArrayList<>();
         this.moyen = new ArrayList<>();
@@ -325,7 +323,7 @@ public class GameActivity extends AppCompatActivity {
                 bgTimer.setAlpha(0);
 
                 for (int i = 0; i < listBtnChoix.size(); i++){
-                    if (listChoix.get(i).equals(reponse)){
+                    if (listBtnChoix.get(i).getText().equals(res.getString(reponse))){
                         listBtnChoix.get(i).setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
                     } else {
                         listBtnChoix.get(i).setAlpha((float) 0.2);
@@ -386,7 +384,6 @@ public class GameActivity extends AppCompatActivity {
                             nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
                             if(RepCounter.getTotalRep() == 10) {
-                                rain();
                                 VictoryScreen();
                                 temps.setText("");
                             } else {
