@@ -1,4 +1,7 @@
 package com.example.cinequiz;
+
+import java.util.Random;
+import com.example.cinequiz.utils.Question;
 import com.example.cinequiz.utils.RepCounter;
 import com.example.cinequiz.utils.OscarCounter;
 import com.example.cinequiz.utils.PreferencesSaver;
@@ -59,7 +62,7 @@ public class GameActivity extends AppCompatActivity {
     private List<Button> listBtnChoix;
     private List<String> listChoix;
     private List<ImageView> listPoints;
-    private String reponse;
+    private int reponse;
     private ImageButton back;
     private ImageView image;
     private TextView temps;
@@ -70,6 +73,16 @@ public class GameActivity extends AppCompatActivity {
     private LinearLayout bgTimer;
 
     private Resources res;
+
+    private List<Question> facile;
+    private List<Question> moyen;
+    private List<Question> difficile;
+    private List<Question> marvel;
+    private List<Question> dc;
+
+    private List<Question> questions;
+
+    private Question question;
 
     private GestureDetectorCompat gestureDetector;
     SharedPreferences sharedPreferences;
@@ -92,11 +105,21 @@ public class GameActivity extends AppCompatActivity {
         mode = intent.getStringExtra("mode");
         difficulty = intent.getStringExtra("difficulty");
 
-        listBtnChoix = new ArrayList<>();
-        listChoix = new ArrayList<>();
-        listPoints = new ArrayList<>();
+        this.listBtnChoix = new ArrayList<>();
+        this.listChoix = new ArrayList<>();
+        this.listPoints = new ArrayList<>();
+        this.facile = new ArrayList<>();
+        this.moyen = new ArrayList<>();
+        this.difficile = new ArrayList<>();
+        this.marvel = new ArrayList<>();
+        this.dc = new ArrayList<>();
+        this.questions = new ArrayList<>();
 
-        reponse = "choix 1";
+        InitialiseQuestions();
+
+        this.question = ChoisieQuestion();
+
+        this.reponse = this.question.getReponse();
 
         temps = findViewById(R.id.timer);
 
@@ -149,9 +172,14 @@ public class GameActivity extends AppCompatActivity {
         });
 
 
+
+
         image = findViewById(R.id.imageFilm);
-        String imageUrl = "https://www.liberation.fr/resizer/2vCD5EFaJW82pYD8ax7xGr3dQCs=/600x0/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/liberation/QYURNGWR2KB6JOKDXAW6LTMQW4.jpg";
-        Picasso.get().load(imageUrl).into(image);
+        image.setImageResource(question.getImage());
+
+        LayoutInflater victory = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams") View victoyView = victory.inflate(R.layout.victory_layout, null);
+
 
         nbRep = findViewById(R.id.nbRep);
         nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
@@ -174,6 +202,59 @@ public class GameActivity extends AppCompatActivity {
 
         InitialiseList();
         InitialisePoints();
+
+
+    }
+
+    private static List<Question> filterQuestionsByMode(List<Question> questions, String mode) {
+        List<Question> filteredQuestions = new ArrayList<>();
+        for (Question question : questions) {
+            if (question.getMode().equals(mode)) {
+                filteredQuestions.add(question);
+            }
+        }
+        return filteredQuestions;
+    }
+
+    private static List<Question> filterQuestionsNormal(List<Question> questions) {
+        List<Question> filteredQuestions = new ArrayList<>();
+        for (Question question : questions) {
+            if (!question.getMode().equals("Blindtest")) {
+                filteredQuestions.add(question);
+            }
+        }
+        return filteredQuestions;
+    }
+
+    private Question ChoisieQuestion(){
+        Random random = new Random();
+        switch (difficulty){
+            case "easy":
+                 this.questions = facile;
+                break;
+            case "medium":
+                this.questions= moyen;
+                break;
+            case "hard":
+                this.questions= difficile;
+                break;
+            default:
+                this.questions= difficile;
+                break;
+        }
+
+        if (mode.equals("normal")){
+            this.questions= filterQuestionsNormal(this.questions);
+        }else {
+            this.questions= filterQuestionsByMode(this.questions, mode);
+        }
+        try {
+            return this.questions.get(random.nextInt(this.questions.size()));
+        }catch (IllegalArgumentException e){
+            System.out.println("pas assez de question pour ce mode et cette difficulté");
+            e.printStackTrace();
+            return this.facile.get(random.nextInt(this.facile.size()));
+        }
     }
 
     private int NombreOscars(){
@@ -226,6 +307,7 @@ public class GameActivity extends AppCompatActivity {
         listBtnChoix.add(findViewById(R.id.choix2));
         listBtnChoix.add(findViewById(R.id.choix3));
         listBtnChoix.add(findViewById(R.id.choix4));
+        Random random = new Random();
 
         CountDownTimer timer = new CountDownTimer(30000, 1000) {
 
@@ -263,84 +345,96 @@ public class GameActivity extends AppCompatActivity {
 
         timer.start();
 
-        listChoix.add("choix 1");
-        listChoix.add("choix 2");
-        listChoix.add("choix 3");
-        listChoix.add("choix 4");
+        listBtnChoix.get(0).setText("pas assez");
+        listBtnChoix.get(1).setText("de questions");
+        listBtnChoix.get(2).setText("pour ce mode");
+        listBtnChoix.get(3).setText("veillez quitter");
+        try {
+            int numrep = random.nextInt(questions.size());
 
-        for (int i = 0; i < listBtnChoix.size(); i++){
-            listBtnChoix.get(i).setText(listChoix.get(i));
-            if (listChoix.get(i).equals(reponse)){
-                //Bonne réponse
-                listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
 
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onClick(View v) {
-                        points += "o";
-                        CreateGestureDetector();
-                        SetButtonsUnclickable();
+            for (int i = 0; i < listBtnChoix.size(); i++){
+                if (i == numrep){
+                    listBtnChoix.get(i).setText(reponse);
+                }else {
+                    listBtnChoix.get(i).setText(questions.get(random.nextInt(questions.size())).getReponse());
+                }
+                if ((listBtnChoix.get(i).getText()).equals(res.getString(this.reponse))){
+                    System.out.println("ligne 326");
+                    //Bonne réponse
+                    listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
 
-                        timer.cancel();
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onClick(View v) {
+                            points += "o";
+                            CreateGestureDetector();
+                            SetButtonsUnclickable();
 
-                        v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
+                            timer.cancel();
 
-                        for (int i = 0; i < listBtnChoix.size(); i++){
-                            listBtnChoix.get(i).setText(listChoix.get(i));
-                            if (!listChoix.get(i).equals(reponse)){
-                                listBtnChoix.get(i).setAlpha((float) 0.2);
+                            v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
+
+                            for (int i = 0; i < listBtnChoix.size(); i++){
+                                if (!listBtnChoix.get(i).getText().equals(res.getString(reponse))){
+                                    listBtnChoix.get(i).setAlpha((float) 0.2);
+                                }
+                            }
+
+                            RepCounter.addTotalRep();
+                            RepCounter.addBonneRep();
+                            nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
+
+                            if(RepCounter.getTotalRep() == 10) {
+                                rain();
+                                VictoryScreen();
+                                temps.setText("");
+                            } else {
+                                temps.setText("Swipe >>>");
                             }
                         }
+                    });
+                } else {
+                    //Mauvaise réponse
+                    listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
 
-                        RepCounter.addTotalRep();
-                        RepCounter.addBonneRep();
-                        nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onClick(View v) {
+                            points += "x";
+                            CreateGestureDetector();
+                            SetButtonsUnclickable();
 
-                        if(RepCounter.getTotalRep() == 10) {
-                            GameFinisher();
-                        } else {
-                            temps.setText("Swipe >>>");
-                        }
-                    }
-                });
-            } else {
-                //Mauvaise réponse
-                listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
+                            timer.cancel();
 
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onClick(View v) {
-                        points += "x";
-                        CreateGestureDetector();
-                        SetButtonsUnclickable();
+                            v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.red)));
 
-                        timer.cancel();
-
-                        v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.red)));
-
-                        for (int i = 0; i < listBtnChoix.size(); i++){
-                            listBtnChoix.get(i).setText(listChoix.get(i));
-                            if (!listChoix.get(i).equals(reponse) && !listBtnChoix.get(i).equals(v)){
-                                listBtnChoix.get(i).setAlpha((float) 0.2);
+                            for (int i = 0; i < listBtnChoix.size(); i++){
+                                if (!listBtnChoix.get(i).getText().equals(res.getString(reponse)) && !listBtnChoix.get(i).equals(v)){
+                                    listBtnChoix.get(i).setAlpha((float) 0.2);
+                                }
+                                if (listBtnChoix.get(i).getText().equals(res.getString(reponse))){
+                                    listBtnChoix.get(i).setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
+                                }
                             }
-                            if (listChoix.get(i).equals(reponse)){
-                                listBtnChoix.get(i).setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
+
+                            RepCounter.addTotalRep();
+                            nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
+
+                            if(RepCounter.getTotalRep() == 10) {
+                                GameFinisher();
+                            } else {
+                                temps.setText("Swipe >>>");
                             }
                         }
-
-                        RepCounter.addTotalRep();
-                        nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
-
-                        if(RepCounter.getTotalRep() == 10) {
-                            GameFinisher();
-                        } else {
-                            temps.setText("Swipe >>>");
-                        }
-                    }
-                });
+                    });
+                }
             }
-
+        } catch (IllegalArgumentException e) {
+            System.out.println("pas assez de question pour ce mode et cette difficulté");
+            e.printStackTrace();
         }
+
     }
 
     private void GameFinisher(){
@@ -472,6 +566,25 @@ public class GameActivity extends AppCompatActivity {
                         .position(new Position.Relative(0.0, 0.0).between(new Position.Relative(1.0, 0.0)))
                         .build()
         );
+    }
+
+    private void InitialiseQuestions(){
+        this.facile.add(new Question("image", R.string.kill_bill, R.drawable.modeimage));
+        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+
+        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+
+        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+
     }
 
 }

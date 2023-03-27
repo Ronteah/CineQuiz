@@ -16,4 +16,15 @@
     <string name="not_enough">Not enough !</string>
     <string name="good">Good !</string>
     <string name="perfect">Perfect !</string>
+    <string name="question_image">What is this movie ?</string>
+    <string name="question_blindtest">From which movie does this song come from ?</string>
+    <string name="question_celebrite">Who is this celebrity ?</string>
+    <string name="question_replique">From which movie does this punchline come from ?</string>
+
+    <!--    Film    -->
+    <string name="kill_bill">kill_bill</string>
+    <string name="le_parain">The godfather</string>
+
+    <!--    Acteur    -->
+    <string name="tarantino">Quentin Tarantino</string>
 </resources>

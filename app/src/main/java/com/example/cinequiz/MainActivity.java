@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
 import com.example.cinequiz.utils.CustomGestureListener;
+import com.example.cinequiz.utils.Question;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 

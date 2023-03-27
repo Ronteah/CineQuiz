@@ -16,4 +16,15 @@
     <string name="not_bad">Pas mal !</string>
     <string name="good">Bien !</string>
     <string name="perfect">Parfait !</string>
+    <string name="question_image">Comment s\'appelle ce film ?</string>
+    <string name="question_blindtest">De quel film viens cette musique ?</string>
+    <string name="question_celebrite">Qui est cette célébrité ?</string>
+    <string name="question_replique">De quel film viens cette réplique ?</string>
+
+<!--    Film    -->
+    <string name="kill_bill">kill_bill</string>
+    <string name="le_parain">Le Parain</string>
+
+    <!--    Acteur    -->
+    <string name="tarantino">Quentin Tarantino</string>
 </resources>
