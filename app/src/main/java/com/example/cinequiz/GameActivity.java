@@ -225,8 +225,13 @@ public class GameActivity extends AppCompatActivity {
         }else {
             this.questions= filterQuestionsByMode(this.questions, mode);
         }
-
-        return this.questions.get(random.nextInt(this.questions.size()));
+        try {
+            return this.questions.get(random.nextInt(this.questions.size()));
+        }catch (IllegalArgumentException e){
+            System.out.println("pas assez de question pour ce mode et cette difficulté");
+            e.printStackTrace();
+            return this.facile.get(random.nextInt(this.facile.size()));
+        }
     }
 
     private int NombreOscars(){
@@ -311,93 +316,96 @@ public class GameActivity extends AppCompatActivity {
         listBtnChoix.add(findViewById(R.id.choix4));
         Random random = new Random();
 
+        listBtnChoix.get(0).setText("pas assez");
+        listBtnChoix.get(1).setText("de questions");
+        listBtnChoix.get(2).setText("pour ce mode");
+        listBtnChoix.get(3).setText("veillez quitter");
+        try {
+            int numrep = random.nextInt(questions.size());
 
+            Resources res = this.getResources();
 
-        listChoix.add("choix 1");
-        listChoix.add("choix 2");
-        listChoix.add("choix 3");
-        listChoix.add("choix 4");
+            for (int i = 0; i < listBtnChoix.size(); i++){
+                if (i == numrep){
+                    listBtnChoix.get(i).setText(reponse);
+                }else {
+                    listBtnChoix.get(i).setText(questions.get(random.nextInt(questions.size())).getReponse());
+                }
+                if ((listBtnChoix.get(i).getText()).equals(res.getString(this.reponse))){
+                    System.out.println("ligne 326");
+                    //Bonne réponse
+                    listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
 
-        int numrep = random.nextInt(questions.size());
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onClick(View v) {
+                            points += "o";
+                            CreateGestureDetector();
+                            SetButtonsUnclickable();
 
-        Resources res = this.getResources();
+                            v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
 
-        for (int i = 0; i < listBtnChoix.size(); i++){
-            if (i == numrep){
-                listBtnChoix.get(i).setText(reponse);
-            }else {
-                listBtnChoix.get(i).setText(questions.get(random.nextInt(questions.size())).getReponse());
+                            for (int i = 0; i < listBtnChoix.size(); i++){
+                                if (!listBtnChoix.get(i).getText().equals(res.getString(reponse))){
+                                    listBtnChoix.get(i).setAlpha((float) 0.2);
+                                }
+                            }
+
+                            RepCounter.addTotalRep();
+                            RepCounter.addBonneRep();
+                            nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
+
+                            if(RepCounter.getTotalRep() == 10) {
+                                rain();
+                                VictoryScreen();
+                                temps.setText("");
+                            } else {
+                                temps.setText("Swipe >>>");
+                            }
+                        }
+                    });
+                } else {
+                    //Mauvaise réponse
+                    listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
+
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onClick(View v) {
+                            points += "x";
+                            CreateGestureDetector();
+                            SetButtonsUnclickable();
+
+                            v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.red)));
+
+                            for (int i = 0; i < listBtnChoix.size(); i++){
+                                if (!listBtnChoix.get(i).getText().equals(res.getString(reponse)) && !listBtnChoix.get(i).equals(v)){
+                                    listBtnChoix.get(i).setAlpha((float) 0.2);
+                                }
+                                if (listBtnChoix.get(i).getText().equals(res.getString(reponse))){
+                                    listBtnChoix.get(i).setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
+                                }
+                            }
+
+                            RepCounter.addTotalRep();
+                            nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
+
+                            if(RepCounter.getTotalRep() == 10) {
+                                rain();
+                                VictoryScreen();
+                                temps.setText("");
+                            } else {
+                                temps.setText("Swipe >>>");
+                            }
+                        }
+                    });
+                }
+
             }
-            if ((listBtnChoix.get(i).getText()).equals(res.getString(this.reponse))){
-                System.out.println("ligne 326");
-                //Bonne réponse
-                listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
-
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onClick(View v) {
-                        points += "o";
-                        CreateGestureDetector();
-                        SetButtonsUnclickable();
-
-                        v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
-
-                        for (int i = 0; i < listBtnChoix.size(); i++){
-                            if (!listBtnChoix.get(i).getText().equals(res.getString(reponse))){
-                                listBtnChoix.get(i).setAlpha((float) 0.2);
-                            }
-                        }
-
-                        RepCounter.addTotalRep();
-                        RepCounter.addBonneRep();
-                        nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
-
-                        if(RepCounter.getTotalRep() == 10) {
-                            rain();
-                            VictoryScreen();
-                            temps.setText("");
-                        } else {
-                            temps.setText("Swipe >>>");
-                        }
-                    }
-                });
-            } else {
-                //Mauvaise réponse
-                listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
-
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onClick(View v) {
-                        points += "x";
-                        CreateGestureDetector();
-                        SetButtonsUnclickable();
-
-                        v.setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.red)));
-
-                        for (int i = 0; i < listBtnChoix.size(); i++){
-                            if (!listBtnChoix.get(i).getText().equals(res.getString(reponse)) && !listBtnChoix.get(i).equals(v)){
-                                listBtnChoix.get(i).setAlpha((float) 0.2);
-                            }
-                            if (listBtnChoix.get(i).getText().equals(res.getString(reponse))){
-                                listBtnChoix.get(i).setBackgroundTintList(ColorStateList.valueOf(res.getColor(R.color.green)));
-                            }
-                        }
-
-                        RepCounter.addTotalRep();
-                        nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
-
-                        if(RepCounter.getTotalRep() == 10) {
-                            rain();
-                            VictoryScreen();
-                            temps.setText("");
-                        } else {
-                            temps.setText("Swipe >>>");
-                        }
-                    }
-                });
-            }
-
+        } catch (IllegalArgumentException e) {
+            System.out.println("pas assez de question pour ce mode et cette difficulté");
+            e.printStackTrace();
         }
+
     }
 
     @SuppressLint("SetTextI18n")
