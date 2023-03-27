@@ -6,8 +6,11 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GestureDetectorCompat;
 
+import com.example.cinequiz.MainActivity;
+import com.example.cinequiz.ModeActivity;
 import com.example.cinequiz.R;
 
 import com.example.cinequiz.R;
@@ -65,7 +68,6 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
             float diffX = e2.getX() - e1.getX();
 
             Intent intent = new Intent(activity, secondActivity);
-
 
 
             if (points != null) {
