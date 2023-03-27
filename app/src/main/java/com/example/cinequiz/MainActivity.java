@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView nbOscars;
     private ScrollView scrollView;
 
+    private static int CLICK_THRESHOLD = 120;
+
     SharedPreferences sharedPreferences;
 
     @Override
@@ -68,40 +70,70 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 gestureDetector.onTouchEvent(event);
-                return true;
+                return false;
             }
         });
 
-        easy.setOnClickListener(new View.OnClickListener() {
+        easy.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ModeActivity.class);
-                intent.putExtra("difficulty", "easy");
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                finish();
+            public boolean onTouch(View v, MotionEvent event) {
+                long duration = event.getEventTime() - event.getDownTime();
+
+                if (event.getAction() == MotionEvent.ACTION_UP && duration < CLICK_THRESHOLD) {
+
+                    Intent intent = new Intent(MainActivity.this, ModeActivity.class);
+                    intent.putExtra("difficulty", "easy");
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                    finish();
+                }
+                else {
+                    gestureDetector.onTouchEvent(event);
+                }
+
+                return false;
             }
         });
 
-        medium.setOnClickListener(new View.OnClickListener() {
+        medium.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ModeActivity.class);
-                intent.putExtra("difficulty", "medium");
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                finish();
+            public boolean onTouch(View v, MotionEvent event) {
+                long duration = event.getEventTime() - event.getDownTime();
+
+                if (event.getAction() == MotionEvent.ACTION_UP && duration < CLICK_THRESHOLD) {
+
+                    Intent intent = new Intent(MainActivity.this, ModeActivity.class);
+                    intent.putExtra("difficulty", "medium");
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                    finish();
+                }
+                else {
+                    gestureDetector.onTouchEvent(event);
+                }
+
+                return false;
             }
         });
 
-        hard.setOnClickListener(new View.OnClickListener() {
+        hard.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ModeActivity.class);
-                intent.putExtra("difficulty", "hard");
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                finish();
+            public boolean onTouch(View v, MotionEvent event) {
+                long duration = event.getEventTime() - event.getDownTime();
+
+                if (event.getAction() == MotionEvent.ACTION_UP && duration < CLICK_THRESHOLD) {
+
+                    Intent intent = new Intent(MainActivity.this, ModeActivity.class);
+                    intent.putExtra("difficulty", "hard");
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                    finish();
+                }
+                else {
+                    gestureDetector.onTouchEvent(event);
+                }
+
+                return false;
             }
         });
     }
