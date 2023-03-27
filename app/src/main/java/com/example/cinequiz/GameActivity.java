@@ -181,36 +181,6 @@ public class GameActivity extends AppCompatActivity {
         listPoints.add(findViewById(R.id.point10));
 
         if (points.length() > 9) {
-            //Écran de victoire
-
-            switch (mode){
-                case "normal":
-                    OscarCounter.addNbNormal(NombreOscars());
-                    break;
-                case "blindtest":
-                    OscarCounter.addNbBlindtest(NombreOscars());
-                    break;
-                case "image":
-                    OscarCounter.addNbImage(NombreOscars());
-                    break;
-                case "celebrity":
-                    OscarCounter.addNbCelebrity(NombreOscars());
-                    break;
-                case "replique":
-                    OscarCounter.addNbReplique(NombreOscars());
-                    break;
-            }
-
-            OscarCounter.refreshNbOscars();
-
-            if(RepCounter.getBonneRep() == 10)
-                RepCounter.addNbPerfect();
-
-            RepCounter.addScore((double)RepCounter.getBonneRep());
-
-            //Sauvegarde les données
-            sharedPreferences = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
-            PreferencesSaver.SavePreferences(sharedPreferences);
 
             Intent intent = new Intent(GameActivity.this, MainActivity.class);
             startActivity(intent);
@@ -271,9 +241,7 @@ public class GameActivity extends AppCompatActivity {
                         nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
                         if(RepCounter.getTotalRep() == 10) {
-                            rain();
-                            VictoryScreen();
-                            temps.setText("");
+                            GameFinisher();
                         } else {
                             temps.setText("Swipe >>>");
                         }
@@ -306,9 +274,7 @@ public class GameActivity extends AppCompatActivity {
                         nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
                         if(RepCounter.getTotalRep() == 10) {
-                            rain();
-                            VictoryScreen();
-                            temps.setText("");
+                            GameFinisher();
                         } else {
                             temps.setText("Swipe >>>");
                         }
@@ -317,6 +283,42 @@ public class GameActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    private void GameFinisher(){
+        //Écran de victoire
+        switch (mode){
+            case "normal":
+                OscarCounter.addNbNormal(NombreOscars());
+                break;
+            case "blindtest":
+                OscarCounter.addNbBlindtest(NombreOscars());
+                break;
+            case "image":
+                OscarCounter.addNbImage(NombreOscars());
+                break;
+            case "celebrity":
+                OscarCounter.addNbCelebrity(NombreOscars());
+                break;
+            case "replique":
+                OscarCounter.addNbReplique(NombreOscars());
+                break;
+        }
+
+        OscarCounter.refreshNbOscars();
+
+        if(RepCounter.getBonneRep() == 10)
+            RepCounter.addNbPerfect();
+
+        RepCounter.addScore((double)RepCounter.getBonneRep());
+
+        //Sauvegarde les données
+        sharedPreferences = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+        PreferencesSaver.SavePreferences(sharedPreferences);
+
+        rain();
+        VictoryScreen();
+        temps.setText("");
     }
 
     @SuppressLint("SetTextI18n")

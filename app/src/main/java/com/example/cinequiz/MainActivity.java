@@ -7,6 +7,7 @@ import androidx.core.view.GestureDetectorCompat;
 
 import com.example.cinequiz.utils.CustomGestureListener;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -24,12 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
     private GestureDetectorCompat gestureDetector;
     private TextView nbOscars;
+    private ScrollView scrollView;
 
     SharedPreferences sharedPreferences;
 
     @Override
     public void onBackPressed() {}
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector, ">"));
+
+        scrollView = findViewById(R.id.scrollView);
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                gestureDetector.onTouchEvent(event);
+                return false;
+            }
+        });
 
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
