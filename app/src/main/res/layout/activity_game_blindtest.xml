@@ -37,6 +37,11 @@
 
         <include layout="@layout/banner_game" />
 
+        <ImageView
+            android:id="@+id/imageFilm"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

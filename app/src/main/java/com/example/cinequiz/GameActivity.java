@@ -138,8 +138,9 @@ public class GameActivity extends AppCompatActivity {
         back = findViewById(R.id.btnBack);
         InitialiseBack();
 
+        image = findViewById(R.id.imageFilm);
+
         if(!Objects.equals(mode, "replique") && !Objects.equals(mode, "blindtest")) {
-            image = findViewById(R.id.imageFilm);
             Picasso.get().load(question.getImage()).into(image);
         }
 
