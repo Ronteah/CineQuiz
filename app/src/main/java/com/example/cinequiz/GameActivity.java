@@ -1,5 +1,6 @@
 package com.example.cinequiz;
 
+import java.io.IOException;
 import java.util.Random;
 import com.example.cinequiz.utils.Question;
 import com.example.cinequiz.utils.RepCounter;
@@ -19,6 +20,8 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.GestureDetector;
@@ -70,6 +73,7 @@ public class GameActivity extends AppCompatActivity {
     private String mode;
     private String difficulty;
     private LinearLayout bgTimer;
+    private ImageButton btnSound;
 
     private Resources res;
 
@@ -86,10 +90,10 @@ public class GameActivity extends AppCompatActivity {
     private GestureDetectorCompat gestureDetector;
     SharedPreferences sharedPreferences;
 
+    private MediaPlayer mediaPlayer;
+
     @Override
     public void onBackPressed() {}
-
-
 
 
 
@@ -100,7 +104,6 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
         Objects.requireNonNull(getSupportActionBar()).hide(); //hide the title bar
-        setContentView(R.layout.activity_game);
 
         res = this.getResources();
 
@@ -108,6 +111,30 @@ public class GameActivity extends AppCompatActivity {
         points = intent.getStringExtra("points");
         mode = intent.getStringExtra("mode");
         difficulty = intent.getStringExtra("difficulty");
+
+        System.out.println(mode);
+
+        switch (mode){
+            case "replique":
+                setContentView(R.layout.activity_game_replique);
+                break;
+            case "blindtest":
+                setContentView(R.layout.activity_game_blindtest);
+                playAudio("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                btnSound = findViewById(R.id.btnSound);
+                btnSound.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mediaPlayer.stop();
+                        mediaPlayer.reset();
+                        playAudio("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                    }
+                });
+                break;
+            default:
+                setContentView(R.layout.activity_game);
+                break;
+        }
 
         this.listBtnChoix = new ArrayList<>();
         this.listPoints = new ArrayList<>();
@@ -130,9 +157,10 @@ public class GameActivity extends AppCompatActivity {
         back = findViewById(R.id.btnBack);
         InitialiseBack();
 
-        image = findViewById(R.id.imageFilm);
-        image.setImageResource(question.getImage());
-
+        if(!Objects.equals(mode, "replique") && !Objects.equals(mode, "blindtest")) {
+            image = findViewById(R.id.imageFilm);
+            image.setImageResource(question.getImage());
+        }
 
         nbRep = findViewById(R.id.nbRep);
         nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
@@ -156,10 +184,28 @@ public class GameActivity extends AppCompatActivity {
         InitialisePoints();
     }
 
+    private void playAudio(String audioUrl) {
 
+        // initializing media player
+        mediaPlayer = new MediaPlayer();
 
+        // below line is use to set the audio
+        // stream type for our media player.
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
+        // below line is use to set our
+        // url to our media player.
+        try {
+            mediaPlayer.setDataSource(audioUrl);
+            // below line is use to prepare
+            // and start our media player.
+            mediaPlayer.prepare();
+            mediaPlayer.start();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private static List<Question> filterQuestionsByMode(List<Question> questions, String mode) {
@@ -192,9 +238,6 @@ public class GameActivity extends AppCompatActivity {
                 this.questions= moyen;
                 break;
             case "hard":
-                this.questions= difficile;
-                break;
-            default:
                 this.questions= difficile;
                 break;
         }
