@@ -229,6 +229,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (mode.equals("normal")){
+            //faire des truc pour qu'il y est un seul mode et la question qui vas bien
             this.questions= filterQuestionsNormal(this.questions);
         }else {
             this.questions= filterQuestionsByMode(this.questions, mode);
