@@ -1,6 +1,9 @@
 package com.example.cinequiz;
 
+import java.io.IOException;
 import java.util.Random;
+
+import com.example.cinequiz.utils.ListQuestions;
 import com.example.cinequiz.utils.Question;
 import com.example.cinequiz.utils.RepCounter;
 import com.example.cinequiz.utils.OscarCounter;
@@ -10,26 +13,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
-import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -49,12 +49,10 @@ import java.util.concurrent.TimeUnit;
 import nl.dionsegijn.konfetti.core.Position;
 import nl.dionsegijn.konfetti.core.Spread;
 import nl.dionsegijn.konfetti.xml.KonfettiView;
-import nl.dionsegijn.konfetti.core.Party;
 import nl.dionsegijn.konfetti.core.PartyFactory;
 import nl.dionsegijn.konfetti.core.emitter.Emitter;
 import nl.dionsegijn.konfetti.core.emitter.EmitterConfig;
 import nl.dionsegijn.konfetti.core.models.Shape;
-import nl.dionsegijn.konfetti.core.models.Size;
 import nl.dionsegijn.konfetti.core.Angle;
 
 public class GameActivity extends AppCompatActivity {
@@ -70,14 +68,9 @@ public class GameActivity extends AppCompatActivity {
     private String mode;
     private String difficulty;
     private LinearLayout bgTimer;
+    private ImageButton btnSound;
 
     private Resources res;
-
-    private List<Question> facile;
-    private List<Question> moyen;
-    private List<Question> difficile;
-    private List<Question> marvel;
-    private List<Question> dc;
 
     private List<Question> questions;
 
@@ -86,10 +79,10 @@ public class GameActivity extends AppCompatActivity {
     private GestureDetectorCompat gestureDetector;
     SharedPreferences sharedPreferences;
 
+    private MediaPlayer mediaPlayer;
+
     @Override
     public void onBackPressed() {}
-
-
 
 
 
@@ -100,7 +93,6 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
         Objects.requireNonNull(getSupportActionBar()).hide(); //hide the title bar
-        setContentView(R.layout.activity_game);
 
         res = this.getResources();
 
@@ -109,17 +101,33 @@ public class GameActivity extends AppCompatActivity {
         mode = intent.getStringExtra("mode");
         difficulty = intent.getStringExtra("difficulty");
 
+        System.out.println(mode);
+
+        switch (mode){
+            case "replique":
+                setContentView(R.layout.activity_game_replique);
+                break;
+            case "blindtest":
+                setContentView(R.layout.activity_game_blindtest);
+                playAudio("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                btnSound = findViewById(R.id.btnSound);
+                btnSound.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mediaPlayer.stop();
+                        mediaPlayer.reset();
+                        playAudio("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                    }
+                });
+                break;
+            default:
+                setContentView(R.layout.activity_game);
+                break;
+        }
+
         this.listBtnChoix = new ArrayList<>();
         this.listPoints = new ArrayList<>();
-        this.facile = new ArrayList<>();
-        this.moyen = new ArrayList<>();
-        this.difficile = new ArrayList<>();
-        this.marvel = new ArrayList<>();
-        this.dc = new ArrayList<>();
         this.questions = new ArrayList<>();
-
-
-        InitialiseQuestions();
 
         this.question = ChoisieQuestion();
         this.reponse = this.question.getReponse();
@@ -131,8 +139,10 @@ public class GameActivity extends AppCompatActivity {
         InitialiseBack();
 
         image = findViewById(R.id.imageFilm);
-        image.setImageResource(question.getImage());
 
+        if(!Objects.equals(mode, "replique") && !Objects.equals(mode, "blindtest")) {
+            Picasso.get().load(question.getImage()).into(image);
+        }
 
         nbRep = findViewById(R.id.nbRep);
         nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
@@ -156,10 +166,28 @@ public class GameActivity extends AppCompatActivity {
         InitialisePoints();
     }
 
+    private void playAudio(String audioUrl) {
 
+        // initializing media player
+        mediaPlayer = new MediaPlayer();
 
+        // below line is use to set the audio
+        // stream type for our media player.
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
+        // below line is use to set our
+        // url to our media player.
+        try {
+            mediaPlayer.setDataSource(audioUrl);
+            // below line is use to prepare
+            // and start our media player.
+            mediaPlayer.prepare();
+            mediaPlayer.start();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private static List<Question> filterQuestionsByMode(List<Question> questions, String mode) {
@@ -186,16 +214,16 @@ public class GameActivity extends AppCompatActivity {
         Random random = new Random();
         switch (difficulty){
             case "easy":
-                 this.questions = facile;
+                 this.questions = ListQuestions.getFacile();
                 break;
             case "medium":
-                this.questions= moyen;
+                this.questions= ListQuestions.getMoyen();
                 break;
             case "hard":
-                this.questions= difficile;
+                this.questions= ListQuestions.getDifficile();
                 break;
             default:
-                this.questions= difficile;
+                this.questions= ListQuestions.getFacile();
                 break;
         }
 
@@ -209,7 +237,7 @@ public class GameActivity extends AppCompatActivity {
         }catch (IllegalArgumentException e){
             System.out.println("pas assez de question pour ce mode et cette difficulté");
             e.printStackTrace();
-            return this.facile.get(random.nextInt(this.facile.size()));
+            return ListQuestions.getFacile().get(random.nextInt(ListQuestions.getFacile().size()));
         }
     }
 
@@ -306,7 +334,7 @@ public class GameActivity extends AppCompatActivity {
         listBtnChoix.get(2).setText("pour ce mode");
         listBtnChoix.get(3).setText("veillez quitter");
         try {
-            int numrep = random.nextInt(questions.size());
+            int numrep = random.nextInt(listBtnChoix.size());
 
 
             for (int i = 0; i < listBtnChoix.size(); i++){
@@ -573,26 +601,4 @@ public class GameActivity extends AppCompatActivity {
                         .build()
         );
     }
-
-    private void InitialiseQuestions(){
-        String imageUrl = "https://www.liberation.fr/resizer/2vCD5EFaJW82pYD8ax7xGr3dQCs=/600x0/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/liberation/QYURNGWR2KB6JOKDXAW6LTMQW4.jpg";
-//        Picasso.get().load(imageUrl).into(image);
-        this.facile.add(new Question("image", R.string.kill_bill, R.drawable.modeimage));
-        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-
-        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-
-        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
-
-    }
-
 }
