@@ -36,12 +36,16 @@ public class ListQuestions {
         facile.add(new Question("image", R.string.men_in_black, "https://img.republicworld.com/republic-prod/stories/promolarge/xhdpi/fz2fsg9ovo9kmmaw_1598680250.jpeg?tr=w-1200,h-900"));
         facile.add(new Question("image", R.string.iron_man, "https://tomorrowsociety.com/wp-content/uploads/2020/05/Iron-Man.jpg"));
         facile.add(new Question("image", R.string.star_wars, "https://www.slate.fr/sites/default/files/styles/1060x523/public/sw_3.jpg"));
-        facile.add(new Question("image", R.string.jumanji, "https://example.com/jumanji.jpg"));
-        facile.add(new Question("image", R.string.john_wick, "https://example.com/john_wick.jpg"));
-        facile.add(new Question("image", R.string.the_dark_knight, "https://example.com/the_dark_knight.jpg"));
-        facile.add(new Question("image", R.string.the_lord_of_the_rings, "https://example.com/the_lord_of_the_rings.jpg"));
-        facile.add(new Question("image", R.string.toy_story, "https://example.com/toy_story.jpg"));
-        facile.add(new Question("image", R.string.the_matrix, "https://example.com/the_matrix.jpg"));
+        facile.add(new Question("image", R.string.jumanji, "https://focus.telerama.fr/967x550/100/2022/12/20/01d02761116546d8e1fc1a8191cb6c4273287507.jpg"));
+        facile.add(new Question("image", R.string.john_wick, "https://static1.moviewebimages.com/wordpress/wp-content/uploads/2022/11/Bill-Skarsgard-John-Wick-4.jpg"));
+        facile.add(new Question("image", R.string.the_dark_knight, "https://www.leblogducinema.com/wp-content/uploads//2017/09/The-Dark-Knight-1.jpg"));
+        facile.add(new Question("image", R.string.the_lord_of_the_rings, "https://www.slate.fr/sites/default/files/styles/1060x523/public/f_1.jpg"));
+        facile.add(new Question("image", R.string.toy_story, "https://www.lexpress.fr/resizer/7aNZA1AMtN1C61N754kh-UXaEg4=/970x548/cloudfront-eu-central-1.images.arcpublishing.com/lexpress/ZKXTRZGLP5ATVJ3DBJHHS3STIM.jpg"));
+        facile.add(new Question("image", R.string.the_matrix, "https://www.redsharknews.com/hubfs/Unreal_Engine_5_Matrix_Awakens.jpg"));
+        facile.add(new Question("image", R.string.avatar, "https://www.gry-online.pl/i/h/17/408718071.jpg"));
+        facile.add(new Question("image", R.string.back_to_the_future, "https://www.melty.fr/wp-content/uploads/meltyfr/2022/12/bttf.0.0.jpeg"));
+        facile.add(new Question("image", R.string.jurassic_park, "https://cdn-s-www.dna.fr/images/7B4430CD-594B-4CF6-9C71-089C6F7BB3FD/NW_raw/dans-quot-jurassic-world-quot-une-nouvelle-espece-de-dinosaures-est-creee-l-indominus-rex-photo-universal-pictures-allocine-1653555348.jpg"));
+        facile.add(new Question("image", R.string.jaws, "https://cdn.aarp.net/content/dam/aarp/entertainment/movies-for-grownups/2020/06/1140-jaws.jpg"));
     }
 
     public static List<Question> getFacile() {

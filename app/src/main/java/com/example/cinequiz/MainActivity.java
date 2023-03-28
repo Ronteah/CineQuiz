@@ -12,13 +12,18 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -36,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {}
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,90 @@ public class MainActivity extends AppCompatActivity {
         ImageButton easy = findViewById(R.id.btnEasy);
         ImageButton medium = findViewById(R.id.btnMedium);
         ImageButton hard = findViewById(R.id.btnHard);
+
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(0);
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+
+        LinearLayout layoutMedium = findViewById(R.id.layoutMedium);
+        LinearLayout layoutHard = findViewById(R.id.layoutHard);
+
+        TextView needMedium = findViewById(R.id.needMedium);
+        TextView needHard = findViewById(R.id.needHard);
+
+        if(OscarCounter.getNbOscars() < 15) {
+            medium.setColorFilter(filter);
+            needMedium.setText(OscarCounter.getNbOscarsString() + "/15");
+
+            medium.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    gestureDetector.onTouchEvent(event);
+                    return false;
+                }
+            });
+
+        } else {
+            layoutMedium.setAlpha(0);
+
+            medium.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    long duration = event.getEventTime() - event.getDownTime();
+
+                    if (event.getAction() == MotionEvent.ACTION_UP && duration < CLICK_THRESHOLD) {
+
+                        Intent intent = new Intent(MainActivity.this, ModeActivity.class);
+                        intent.putExtra("difficulty", "medium");
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                        finish();
+                    }
+                    else {
+                        gestureDetector.onTouchEvent(event);
+                    }
+
+                    return false;
+                }
+            });
+        }
+
+        if(OscarCounter.getNbOscars() < 30) {
+            hard.setColorFilter(filter);
+            needHard.setText(OscarCounter.getNbOscarsString() + "/30");
+
+            hard.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    gestureDetector.onTouchEvent(event);
+                    return false;
+                }
+            });
+
+        } else {
+            layoutHard.setAlpha(0);
+
+            hard.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    long duration = event.getEventTime() - event.getDownTime();
+
+                    if (event.getAction() == MotionEvent.ACTION_UP && duration < CLICK_THRESHOLD) {
+
+                        Intent intent = new Intent(MainActivity.this, ModeActivity.class);
+                        intent.putExtra("difficulty", "hard");
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                        finish();
+                    }
+                    else {
+                        gestureDetector.onTouchEvent(event);
+                    }
+
+                    return false;
+                }
+            });
+        }
 
         nbOscars = findViewById(R.id.nbOscars);
 
@@ -85,48 +174,6 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(MainActivity.this, ModeActivity.class);
                     intent.putExtra("difficulty", "easy");
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                    finish();
-                }
-                else {
-                    gestureDetector.onTouchEvent(event);
-                }
-
-                return false;
-            }
-        });
-
-        medium.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                long duration = event.getEventTime() - event.getDownTime();
-
-                if (event.getAction() == MotionEvent.ACTION_UP && duration < CLICK_THRESHOLD) {
-
-                    Intent intent = new Intent(MainActivity.this, ModeActivity.class);
-                    intent.putExtra("difficulty", "medium");
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                    finish();
-                }
-                else {
-                    gestureDetector.onTouchEvent(event);
-                }
-
-                return false;
-            }
-        });
-
-        hard.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                long duration = event.getEventTime() - event.getDownTime();
-
-                if (event.getAction() == MotionEvent.ACTION_UP && duration < CLICK_THRESHOLD) {
-
-                    Intent intent = new Intent(MainActivity.this, ModeActivity.class);
-                    intent.putExtra("difficulty", "hard");
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     finish();

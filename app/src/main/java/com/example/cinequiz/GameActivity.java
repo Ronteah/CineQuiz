@@ -24,6 +24,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -502,7 +503,7 @@ public class GameActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
         PreferencesSaver.SavePreferences(sharedPreferences);
 
-        VictoryScreen();
+        (new Handler()).postDelayed(this::VictoryScreen, 800);
         temps.setText("");
     }
 

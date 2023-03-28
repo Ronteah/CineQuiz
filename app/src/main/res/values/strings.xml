@@ -44,7 +44,11 @@
     <string name="the_dark_knight">The Dark Knight</string> <!-- mettant en vedette Christian Bale et Heath Ledger -->
     <string name="the_lord_of_the_rings">Le Seigneur des Anneaux</string> <!-- mettant en vedette Cate Blanchett et Orlando Bloom -->
     <string name="toy_story">Toy Story</string> <!-- mettant en vedette Tom Hanks -->
-    <string name="the_matrix">Matrix</string> <!-- mettant en vedette Keanu Reeves -->
+    <string name="avatar" translatable="false">Avatar</string> <!-- mettant en vedette Keanu Reeves -->
+    <string name="back_to_the_future">Back to the Future</string> <!-- mettant en vedette Keanu Reeves -->
+    <string name="jurassic_park" translatable="false">Jurassic park</string> <!-- mettant en vedette Keanu Reeves -->
+    <string name="jaws">Jaws</string> <!-- mettant en vedette Keanu Reeves -->
+    <string name="indiana_jones" translatable="false">Indiana Jones</string> <!-- mettant en vedette Keanu Reeves -->
 
     <!--    Célébrité    -->
     <string name="tarantino">Quentin Tarantino</string>
@@ -68,4 +72,5 @@
     <string name="dwayne_johnson">Dwayne Johnson</string>
     <string name="keanu_reeves">Keanu Reeves</string>
     <string name="cate_blanchett">Cate Blanchett</string>
+    <string name="the_matrix">The Matrix</string>
 </resources>

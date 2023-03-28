@@ -123,4 +123,5 @@ public class OscarCounter {
     public static String getNbCelebrityString(){
         return ("" + nbCelebrity);
     }
+
 }
