@@ -89,6 +89,11 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {}
 
+
+
+
+
+
     @SuppressLint({"SetTextI18n", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,54 +127,8 @@ public class GameActivity extends AppCompatActivity {
 
         temps = findViewById(R.id.timer);
 
-
-        Dialog dialog = new Dialog(GameActivity.this);
         back = findViewById(R.id.btnBack);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.setContentView(R.layout.dialog_layout);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.setCancelable(false);
-                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
-
-                Button btnYes = dialog.findViewById(R.id.btnYes);
-                Button btnNo = dialog.findViewById(R.id.btnNo);
-
-                image.setImageAlpha(80);
-                for (int i = 0; i < listBtnChoix.size(); i++) {
-                    listBtnChoix.get(i).setAlpha(0.3F);
-                }
-
-                btnYes.setBackgroundColor(Color.GREEN);
-                btnNo.setBackgroundColor(Color.RED);
-
-                btnYes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        Intent intent1 = new Intent(GameActivity.this, MainActivity.class);
-                        startActivity(intent1);
-                        finish();
-                    }
-                });
-
-                btnNo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        image.setImageAlpha(255);
-                        for (int i = 0; i < listBtnChoix.size(); i++) {
-                            listBtnChoix.get(i).setAlpha(1);
-                        }
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
+        InitialiseBack();
 
         image = findViewById(R.id.imageFilm);
         image.setImageResource(question.getImage());
@@ -193,12 +152,15 @@ public class GameActivity extends AppCompatActivity {
 
         bgTimer.startAnimation(animation);
 
-
         InitialiseList();
         InitialisePoints();
-
-
     }
+
+
+
+
+
+
 
     private static List<Question> filterQuestionsByMode(List<Question> questions, String mode) {
         List<Question> filteredQuestions = new ArrayList<>();
@@ -432,6 +394,55 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    private void InitialiseBack(){
+
+        Dialog dialog = new Dialog(GameActivity.this);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.dialog_layout);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.setCancelable(false);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+                Button btnYes = dialog.findViewById(R.id.btnYes);
+                Button btnNo = dialog.findViewById(R.id.btnNo);
+
+                image.setImageAlpha(80);
+                for (int i = 0; i < listBtnChoix.size(); i++) {
+                    listBtnChoix.get(i).setAlpha(0.3F);
+                }
+
+                btnYes.setBackgroundColor(Color.GREEN);
+                btnNo.setBackgroundColor(Color.RED);
+
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Intent intent1 = new Intent(GameActivity.this, MainActivity.class);
+                        startActivity(intent1);
+                        finish();
+                    }
+                });
+
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        image.setImageAlpha(255);
+                        for (int i = 0; i < listBtnChoix.size(); i++) {
+                            listBtnChoix.get(i).setAlpha(1);
+                        }
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+    }
     private void GameFinisher(){
         //Écran de victoire
         switch (mode){
@@ -564,6 +575,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void InitialiseQuestions(){
+        String imageUrl = "https://www.liberation.fr/resizer/2vCD5EFaJW82pYD8ax7xGr3dQCs=/600x0/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/liberation/QYURNGWR2KB6JOKDXAW6LTMQW4.jpg";
+//        Picasso.get().load(imageUrl).into(image);
         this.facile.add(new Question("image", R.string.kill_bill, R.drawable.modeimage));
         this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
         this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
