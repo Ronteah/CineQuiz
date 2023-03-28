@@ -113,16 +113,17 @@ public class GameActivity extends AppCompatActivity {
         this.dc = new ArrayList<>();
         this.questions = new ArrayList<>();
 
+
         InitialiseQuestions();
 
         this.question = ChoisieQuestion();
-
         this.reponse = this.question.getReponse();
+
 
         temps = findViewById(R.id.timer);
 
-        Dialog dialog = new Dialog(GameActivity.this);
 
+        Dialog dialog = new Dialog(GameActivity.this);
         back = findViewById(R.id.btnBack);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,13 +171,8 @@ public class GameActivity extends AppCompatActivity {
         });
 
 
-
-
         image = findViewById(R.id.imageFilm);
         image.setImageResource(question.getImage());
-
-        LayoutInflater victory = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams") View victoyView = victory.inflate(R.layout.victory_layout, null);
 
 
         nbRep = findViewById(R.id.nbRep);
@@ -358,7 +354,6 @@ public class GameActivity extends AppCompatActivity {
                     listBtnChoix.get(i).setText(questions.get(random.nextInt(questions.size())).getReponse());
                 }
                 if ((listBtnChoix.get(i).getText()).equals(res.getString(this.reponse))){
-                    System.out.println("ligne 326");
                     //Bonne réponse
                     listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
 
@@ -383,8 +378,10 @@ public class GameActivity extends AppCompatActivity {
                             RepCounter.addBonneRep();
                             nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
+                            bgTimer.setAlpha(0);
+
                             if(RepCounter.getTotalRep() == 10) {
-                                VictoryScreen();
+                                GameFinisher();
                                 temps.setText("");
                             } else {
                                 temps.setText("Swipe >>>");
@@ -418,6 +415,8 @@ public class GameActivity extends AppCompatActivity {
                             RepCounter.addTotalRep();
                             nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
+                            bgTimer.setAlpha(0);
+
                             if(RepCounter.getTotalRep() == 10) {
                                 GameFinisher();
                             } else {
@@ -428,7 +427,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("pas assez de question pour ce mode et cette difficulté");
             e.printStackTrace();
         }
 
