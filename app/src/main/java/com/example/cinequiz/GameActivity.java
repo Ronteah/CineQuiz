@@ -1,8 +1,6 @@
 package com.example.cinequiz;
 
 import java.util.Random;
-
-import com.example.cinequiz.utils.ListQuestions;
 import com.example.cinequiz.utils.Question;
 import com.example.cinequiz.utils.RepCounter;
 import com.example.cinequiz.utils.OscarCounter;
@@ -12,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -21,12 +21,15 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -46,10 +49,12 @@ import java.util.concurrent.TimeUnit;
 import nl.dionsegijn.konfetti.core.Position;
 import nl.dionsegijn.konfetti.core.Spread;
 import nl.dionsegijn.konfetti.xml.KonfettiView;
+import nl.dionsegijn.konfetti.core.Party;
 import nl.dionsegijn.konfetti.core.PartyFactory;
 import nl.dionsegijn.konfetti.core.emitter.Emitter;
 import nl.dionsegijn.konfetti.core.emitter.EmitterConfig;
 import nl.dionsegijn.konfetti.core.models.Shape;
+import nl.dionsegijn.konfetti.core.models.Size;
 import nl.dionsegijn.konfetti.core.Angle;
 
 public class GameActivity extends AppCompatActivity {
@@ -67,6 +72,12 @@ public class GameActivity extends AppCompatActivity {
     private LinearLayout bgTimer;
 
     private Resources res;
+
+    private List<Question> facile;
+    private List<Question> moyen;
+    private List<Question> difficile;
+    private List<Question> marvel;
+    private List<Question> dc;
 
     private List<Question> questions;
 
@@ -100,11 +111,19 @@ public class GameActivity extends AppCompatActivity {
 
         this.listBtnChoix = new ArrayList<>();
         this.listPoints = new ArrayList<>();
+        this.facile = new ArrayList<>();
+        this.moyen = new ArrayList<>();
+        this.difficile = new ArrayList<>();
+        this.marvel = new ArrayList<>();
+        this.dc = new ArrayList<>();
         this.questions = new ArrayList<>();
 
-        this.question = ChoisieQuestion();
 
+        InitialiseQuestions();
+
+        this.question = ChoisieQuestion();
         this.reponse = this.question.getReponse();
+
 
         temps = findViewById(R.id.timer);
 
@@ -112,10 +131,7 @@ public class GameActivity extends AppCompatActivity {
         InitialiseBack();
 
         image = findViewById(R.id.imageFilm);
-        Picasso.get().load(question.getImage()).into(image);
-
-        LayoutInflater victory = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams") View victoyView = victory.inflate(R.layout.victory_layout, null);
+        image.setImageResource(question.getImage());
 
 
         nbRep = findViewById(R.id.nbRep);
@@ -170,16 +186,16 @@ public class GameActivity extends AppCompatActivity {
         Random random = new Random();
         switch (difficulty){
             case "easy":
-                 this.questions = ListQuestions.getFacile();
+                 this.questions = facile;
                 break;
             case "medium":
-                this.questions= ListQuestions.getMoyen();
+                this.questions= moyen;
                 break;
             case "hard":
-                this.questions= ListQuestions.getDifficile();
+                this.questions= difficile;
                 break;
             default:
-                this.questions= ListQuestions.getFacile();
+                this.questions= difficile;
                 break;
         }
 
@@ -193,7 +209,7 @@ public class GameActivity extends AppCompatActivity {
         }catch (IllegalArgumentException e){
             System.out.println("pas assez de question pour ce mode et cette difficulté");
             e.printStackTrace();
-            return ListQuestions.getFacile().get(random.nextInt(ListQuestions.getFacile().size()));
+            return this.facile.get(random.nextInt(this.facile.size()));
         }
     }
 
@@ -290,7 +306,7 @@ public class GameActivity extends AppCompatActivity {
         listBtnChoix.get(2).setText("pour ce mode");
         listBtnChoix.get(3).setText("veillez quitter");
         try {
-            int numrep = random.nextInt(listBtnChoix.size());
+            int numrep = random.nextInt(questions.size());
 
 
             for (int i = 0; i < listBtnChoix.size(); i++){
@@ -300,7 +316,6 @@ public class GameActivity extends AppCompatActivity {
                     listBtnChoix.get(i).setText(questions.get(random.nextInt(questions.size())).getReponse());
                 }
                 if ((listBtnChoix.get(i).getText()).equals(res.getString(this.reponse))){
-                    System.out.println("ligne 326");
                     //Bonne réponse
                     listBtnChoix.get(i).setOnClickListener(new View.OnClickListener() {
 
@@ -325,8 +340,10 @@ public class GameActivity extends AppCompatActivity {
                             RepCounter.addBonneRep();
                             nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
+                            bgTimer.setAlpha(0);
+
                             if(RepCounter.getTotalRep() == 10) {
-                                VictoryScreen();
+                                GameFinisher();
                                 temps.setText("");
                             } else {
                                 temps.setText("Swipe >>>");
@@ -360,6 +377,8 @@ public class GameActivity extends AppCompatActivity {
                             RepCounter.addTotalRep();
                             nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
+                            bgTimer.setAlpha(0);
+
                             if(RepCounter.getTotalRep() == 10) {
                                 GameFinisher();
                             } else {
@@ -370,7 +389,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("pas assez de question pour ce mode et cette difficulté");
             e.printStackTrace();
         }
 
@@ -555,4 +573,26 @@ public class GameActivity extends AppCompatActivity {
                         .build()
         );
     }
+
+    private void InitialiseQuestions(){
+        String imageUrl = "https://www.liberation.fr/resizer/2vCD5EFaJW82pYD8ax7xGr3dQCs=/600x0/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/liberation/QYURNGWR2KB6JOKDXAW6LTMQW4.jpg";
+//        Picasso.get().load(imageUrl).into(image);
+        this.facile.add(new Question("image", R.string.kill_bill, R.drawable.modeimage));
+        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+
+        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.moyen.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+
+        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+        this.difficile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
+
+    }
+
 }
