@@ -22,9 +22,49 @@
     <string name="question_replique">From which movie does this punchline come from ?</string>
 
     <!--    Film    -->
-    <string name="kill_bill">kill_bill</string>
+    <string name="kill_bill">kill bill</string>
     <string name="le_parain">The godfather</string>
+    <string name="forrest_gump">Forrest Gump</string>
+    <string name="the_devil_wears_prada">The Devil Wears Prada</string>
+    <string name="titanic">Titanic</string>
+    <string name="maleficent">Maleficent</string>
+    <string name="ocean_eight">Ocean\'s Eight</string>
+    <string name="ocean_eleven">Ocean\'s Eleven</string>
+    <string name="silver_linings_playbook">Silver Linings Playbook</string>
+    <string name="la_la_land">La La Land</string>
+    <string name="marriage_story">Marriage Story</string>
+    <string name="pirates_of_caribbean">Pirates of the Caribbean</string>
+    <string name="pretty_woman">Pretty Woman</string>
+    <string name="men_in_black">Men in Black</string>
+    <string name="iron_man">Iron Man</string>
+    <string name="star_wars">Star Wars</string>
+    <string name="jumanji">Jumanji</string>
+    <string name="john_wick">John Wick</string>
+    <string name="the_dark_knight">The Dark Knight</string>
+    <string name="the_lord_of_the_rings">The Lord of the Rings</string>
+    <string name="toy_story">Toy Story</string>
+    <string name="the_matrix">The Matrix</string>
 
-    <!--    Acteur    -->
+    <!--    Célébrité    -->
     <string name="tarantino">Quentin Tarantino</string>
+    <string name="tom_hanks">Tom Hanks</string>
+    <string name="meryl_streep">Meryl Streep</string>
+    <string name="leonardo_dicaprio">Leonardo DiCaprio</string>
+    <string name="angelina_jolie">Angelina Jolie</string>
+    <string name="george_clooney">George Clooney</string>
+    <string name="jennifer_lawrence">Jennifer Lawrence</string>
+    <string name="brad_pitt">Brad Pitt</string>
+    <string name="emma_stone">Emma Stone</string>
+    <string name="ryan_gosling">Ryan Gosling</string>
+    <string name="scarlett_johansson">Scarlett Johansson</string>
+    <string name="johnny_depp">Johnny Depp</string>
+    <string name="julia_roberts">Julia Roberts</string>
+    <string name="will_smith">Will Smith</string>
+    <string name="anne_hathaway">Anne Hathaway</string>
+    <string name="robert_downey_jr">Robert Downey Jr.</string>
+    <string name="harrison_ford">Harrison Ford</string>
+    <string name="natalie_portman">Natalie Portman</string>
+    <string name="dwayne_johnson">Dwayne Johnson</string>
+    <string name="keanu_reeves">Keanu Reeves</string>
+    <string name="cate_blanchett">Cate Blanchett</string>
 </resources>

@@ -11,10 +11,10 @@ public class Question {
 
     private int reponse;
 
-    private int image;
+    private String image;
 
 
-    public Question(String mode, int reponse, int image) {
+    public Question(String mode, int reponse, String image) {
         this.mode = mode;
         this.reponse = reponse;
         this.image = image;
@@ -38,7 +38,7 @@ public class Question {
         return reponse;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
