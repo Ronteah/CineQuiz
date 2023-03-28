@@ -566,6 +566,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void InitialiseQuestions(){
+        String imageUrl = "https://www.liberation.fr/resizer/2vCD5EFaJW82pYD8ax7xGr3dQCs=/600x0/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/liberation/QYURNGWR2KB6JOKDXAW6LTMQW4.jpg";
+        Picasso.get().load(imageUrl).into(image);
         this.facile.add(new Question("image", R.string.kill_bill, R.drawable.modeimage));
         this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
         this.facile.add(new Question("image", R.string.le_parain, R.drawable.modeimage));
