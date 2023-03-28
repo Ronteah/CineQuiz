@@ -62,20 +62,23 @@
                             android:textStyle="italic" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="225dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="50dp"
                             android:layout_marginBottom="40dp"
+                            android:layout_weight="1"
+                            android:gravity="fill_horizontal"
                             android:orientation="horizontal">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 app:cardCornerRadius="20dp">
 
                                 <Button
                                     android:id="@+id/btnYes"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:background="@drawable/button_bg"
@@ -89,15 +92,21 @@
 
                             </androidx.cardview.widget.CardView>
 
+                            <Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
                             <androidx.cardview.widget.CardView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="40dp"
+
+                                android:layout_weight="1"
                                 app:cardCornerRadius="20dp">
 
                                 <Button
                                     android:id="@+id/btnNo"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:background="@drawable/button_bg"
