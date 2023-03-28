@@ -1,4 +1,5 @@
 package com.example.cinequiz;
+import com.example.cinequiz.utils.ListQuestions;
 import com.example.cinequiz.utils.OscarCounter;
 import com.example.cinequiz.utils.PreferencesSaver;
 
@@ -6,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
 import com.example.cinequiz.utils.CustomGestureListener;
-import com.example.cinequiz.utils.Question;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,7 +20,6 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -46,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide(); //hide the title bar
         setContentView(R.layout.activity_main);
 
+        ListQuestions.init();
         //Load les données sauvegardées
         sharedPreferences = getApplicationContext().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
         PreferencesSaver.LoadPreferences(sharedPreferences);

@@ -22,9 +22,49 @@
     <string name="question_replique">De quel film viens cette réplique ?</string>
 
 <!--    Film    -->
-    <string name="kill_bill">kill_bill</string>
+    <string name="kill_bill">kill bill</string>
     <string name="le_parain">Le Parain</string>
+    <string name="forrest_gump">Forrest Gump</string> <!-- mettant en vedette Tom Hanks -->
+    <string name="the_devil_wears_prada">Le Diable s\'habille en Prada</string> <!-- mettant en vedette Meryl Streep et Anne Hathaway -->
+    <string name="titanic">Titanic</string> <!-- mettant en vedette Leonardo DiCaprio -->
+    <string name="maleficent">Maléfique</string> <!-- mettant en vedette Angelina Jolie -->
+    <string name="ocean_eight">Ocean\'s Eight</string> <!-- mettant en vedette Sandra Bullock, Cate Blanchett, Anne Hathaway et Rihanna -->
+    <string name="ocean_eleven">Ocean\'s Eleven</string> <!-- mettant en vedette George Clooney, Brad Pitt et Julia Roberts -->
+    <string name="silver_linings_playbook">Happiness Therapy</string> <!-- mettant en vedette Jennifer Lawrence et Bradley Cooper -->
+    <string name="la_la_land">La La Land</string> <!-- mettant en vedette Emma Stone et Ryan Gosling -->
+    <string name="marriage_story">Marriage Story</string> <!-- mettant en vedette Scarlett Johansson -->
+    <string name="pirates_of_caribbean">Pirates des Caraïbes</string> <!-- mettant en vedette Johnny Depp -->
+    <string name="pretty_woman">Pretty Woman</string> <!-- mettant en vedette Julia Roberts -->
+    <string name="men_in_black">Men in Black</string> <!-- mettant en vedette Will Smith -->
+    <string name="iron_man">Iron Man</string> <!-- mettant en vedette Robert Downey Jr. -->
+    <string name="star_wars">Star Wars</string> <!-- mettant en vedette Harrison Ford et Natalie Portman -->
+    <string name="jumanji">Jumanji</string> <!-- mettant en vedette Dwayne Johnson -->
+    <string name="john_wick">John Wick</string> <!-- mettant en vedette Keanu Reeves -->
+    <string name="the_dark_knight">The Dark Knight</string> <!-- mettant en vedette Christian Bale et Heath Ledger -->
+    <string name="the_lord_of_the_rings">Le Seigneur des Anneaux</string> <!-- mettant en vedette Cate Blanchett et Orlando Bloom -->
+    <string name="toy_story">Toy Story</string> <!-- mettant en vedette Tom Hanks -->
+    <string name="the_matrix">Matrix</string> <!-- mettant en vedette Keanu Reeves -->
 
-    <!--    Acteur    -->
+    <!--    Célébrité    -->
     <string name="tarantino">Quentin Tarantino</string>
+    <string name="tom_hanks">Tom Hanks</string>
+    <string name="meryl_streep">Meryl Streep</string>
+    <string name="leonardo_dicaprio">Leonardo DiCaprio</string>
+    <string name="angelina_jolie">Angelina Jolie</string>
+    <string name="george_clooney">George Clooney</string>
+    <string name="jennifer_lawrence">Jennifer Lawrence</string>
+    <string name="brad_pitt">Brad Pitt</string>
+    <string name="emma_stone">Emma Stone</string>
+    <string name="ryan_gosling">Ryan Gosling</string>
+    <string name="scarlett_johansson">Scarlett Johansson</string>
+    <string name="johnny_depp">Johnny Depp</string>
+    <string name="julia_roberts">Julia Roberts</string>
+    <string name="will_smith">Will Smith</string>
+    <string name="anne_hathaway">Anne Hathaway</string>
+    <string name="robert_downey_jr">Robert Downey Jr.</string>
+    <string name="harrison_ford">Harrison Ford</string>
+    <string name="natalie_portman">Natalie Portman</string>
+    <string name="dwayne_johnson">Dwayne Johnson</string>
+    <string name="keanu_reeves">Keanu Reeves</string>
+    <string name="cate_blanchett">Cate Blanchett</string>
 </resources>
