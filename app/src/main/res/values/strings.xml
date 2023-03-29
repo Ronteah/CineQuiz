@@ -49,6 +49,19 @@
     <string name="jurassic_park" translatable="false">Jurassic park</string> <!-- mettant en vedette Keanu Reeves -->
     <string name="jaws">Jaws</string> <!-- mettant en vedette Keanu Reeves -->
     <string name="indiana_jones" translatable="false">Indiana Jones</string> <!-- mettant en vedette Keanu Reeves -->
+    <string name="casablanca">Casablanca</string>
+    <string name="a_few_good_men">A Few Good Men</string>
+    <string name="the_terminator">The Terminator</string>
+    <string name="the_shining">The Shining</string>
+    <string name="the_godfather">The Godfather</string>
+    <string name="jaws">Jaws</string>
+    <string name="rocky">Rocky</string>
+    <string name="dirty_dancing">Dirty Dancing</string>
+    <string name="apocalypse_now">Apocalypse Now</string>
+    <string name="scarface">Scarface</string>
+    <string name="braveheart">Braveheart</string>
+    <string name="pulp_fiction">Pulp Fiction</string>
+    <string name="the_lion_king">The Lion King</string>
 
     <!--    Célébrité    -->
     <string name="tarantino">Quentin Tarantino</string>
@@ -72,5 +85,4 @@
     <string name="dwayne_johnson">Dwayne Johnson</string>
     <string name="keanu_reeves">Keanu Reeves</string>
     <string name="cate_blanchett">Cate Blanchett</string>
-    <string name="the_matrix">The Matrix</string>
 </resources>
