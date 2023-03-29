@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -85,6 +87,8 @@ public class GameActivity extends AppCompatActivity {
 
     private MediaPlayer mediaPlayer;
 
+    public static Dialog dialog;
+
     @Override
     public void onBackPressed() {}
 
@@ -117,22 +121,28 @@ public class GameActivity extends AppCompatActivity {
 
         switch (mode){
             case "replique":
+
                 setContentView(R.layout.activity_game_replique);
                 textReplique = findViewById(R.id.textReplique);
-                System.out.println(this.questions.isEmpty());
+
                 if (this.questions.isEmpty()){
                     textReplique.setText(":[");
                 }else {
                     textReplique.setText(question.getReplique());
                 }
+
                 phraseQuestion = findViewById(R.id.question);
                 phraseQuestion.setText(R.string.question_replique);
                 break;
+
             case "blindtest":
+
                 setContentView(R.layout.activity_game_blindtest);
                 phraseQuestion = findViewById(R.id.question);
                 phraseQuestion.setText(R.string.question_blindtest);
+
                 playAudio("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+
                 btnSound = findViewById(R.id.btnSound);
                 btnSound.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -143,13 +153,19 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
                 break;
+
             case "celebrity":
+
                 setContentView(R.layout.activity_game);
+
                 phraseQuestion = findViewById(R.id.question);
                 phraseQuestion.setText(R.string.question_celebrite);
                 break;
+
             case "image":
+
                 setContentView(R.layout.activity_game);
+
                 phraseQuestion = findViewById(R.id.question);
                 phraseQuestion.setText(R.string.question_image);
                 break;
@@ -330,7 +346,10 @@ public class GameActivity extends AppCompatActivity {
             @SuppressLint({"SetTextI18n", "ResourceAsColor"})
             public void onFinish() {
                 points += "x";
-                CreateGestureDetector();
+
+                if(RepCounter.getTotalRep() < 9) {
+                    CreateGestureDetector();
+                }
                 SetButtonsUnclickable();
 
                 bgTimer.setAlpha(0);
@@ -374,7 +393,10 @@ public class GameActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             points += "o";
-                            CreateGestureDetector();
+
+                            if(RepCounter.getTotalRep() < 9) {
+                                CreateGestureDetector();
+                            }
                             SetButtonsUnclickable();
 
                             timer.cancel();
@@ -395,7 +417,7 @@ public class GameActivity extends AppCompatActivity {
 
                             if(RepCounter.getTotalRep() == 10) {
                                 GameFinisher();
-                                temps.setText("");
+                                temps.setText("GG!");
                             } else {
                                 temps.setText("Swipe >>>");
                             }
@@ -409,7 +431,10 @@ public class GameActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             points += "x";
-                            CreateGestureDetector();
+
+                            if(RepCounter.getTotalRep() < 9) {
+                                CreateGestureDetector();
+                            }
                             SetButtonsUnclickable();
 
                             timer.cancel();
@@ -452,19 +477,19 @@ public class GameActivity extends AppCompatActivity {
 
     private void InitialiseBack(){
 
-        Dialog dialog = new Dialog(GameActivity.this);
+        Dialog dialog1 = new Dialog(GameActivity.this);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.dialog_layout);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.setCancelable(false);
-                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+                dialog1.setContentView(R.layout.dialog_layout);
+                dialog1.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog1.setCancelable(false);
+                dialog1.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog1.getWindow().getAttributes().windowAnimations = R.style.animation;
 
-                Button btnYes = dialog.findViewById(R.id.btnYes);
-                Button btnNo = dialog.findViewById(R.id.btnNo);
+                Button btnYes = dialog1.findViewById(R.id.btnYes);
+                Button btnNo = dialog1.findViewById(R.id.btnNo);
 
                 image.setImageAlpha(80);
                 for (int i = 0; i < listBtnChoix.size(); i++) {
@@ -477,7 +502,7 @@ public class GameActivity extends AppCompatActivity {
                 btnYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog.dismiss();
+                        dialog1.dismiss();
                         Intent intent1 = new Intent(GameActivity.this, MainActivity.class);
                         startActivity(intent1);
                         finish();
@@ -491,11 +516,11 @@ public class GameActivity extends AppCompatActivity {
                         for (int i = 0; i < listBtnChoix.size(); i++) {
                             listBtnChoix.get(i).setAlpha(1);
                         }
-                        dialog.dismiss();
+                        dialog1.dismiss();
                     }
                 });
 
-                dialog.show();
+                dialog1.show();
             }
         });
     }
@@ -536,7 +561,7 @@ public class GameActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void VictoryScreen(){
-        Dialog dialog = new Dialog(GameActivity.this);
+        dialog = new Dialog(GameActivity.this);
 
         GestureDetectorCompat gestureDetector1 = CreateGestureDetectorVictory();
 
@@ -591,17 +616,21 @@ public class GameActivity extends AppCompatActivity {
             listBtnChoix.get(i).setAlpha(0.3F);
         }
 
-        dialog.show();
+        if(!((Activity) this).isFinishing())
+        {
+            dialog.show();
+        }
 
         rain(konfettiView);
+
     }
 
     private void CreateGestureDetector(){
-        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, GameActivity.class, gestureDetector, ">", points, modePourQuestionSuivante, difficulty));
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, GameActivity.class, gestureDetector, ">", points, modePourQuestionSuivante, difficulty, "GameActivity"));
     }
 
     private GestureDetectorCompat CreateGestureDetectorVictory(){
-        return new GestureDetectorCompat(this, new CustomGestureListener(this, MainActivity.class, gestureDetector, ">"));
+        return new GestureDetectorCompat(this, new CustomGestureListener(this, MainActivity.class, gestureDetector, ">", "GameActivity1"));
     }
 
     private void SetButtonsUnclickable(){

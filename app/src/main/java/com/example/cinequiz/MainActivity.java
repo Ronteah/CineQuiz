@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             hard.setImageResource(R.drawable.btn_difficile);
         }
 
-        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector, ">"));
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, StatActivity.class, gestureDetector, ">", "MainActivity"));
 
         scrollView = findViewById(R.id.scrollView);
         scrollView.setOnTouchListener(new View.OnTouchListener() {

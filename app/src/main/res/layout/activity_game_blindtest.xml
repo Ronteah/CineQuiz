@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="15dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="26dp">
 
             <ImageButton
                 android:id="@+id/btnSound"
@@ -65,6 +65,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:text="Comment s'appelle ce film ?"
+            android:layout_marginHorizontal="15dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:layout_marginTop="10dp"

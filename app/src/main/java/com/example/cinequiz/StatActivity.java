@@ -46,7 +46,7 @@ public class StatActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide(); //hide the title bar
         setContentView(R.layout.activity_stat);
 
-        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, MainActivity.class, gestureDetector, "<"));
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, MainActivity.class, gestureDetector, "<", "StatActivity"));
 
         ImageView textStat = findViewById(R.id.textStat);
         if(Locale.getDefault().getDisplayLanguage().equals("français")){

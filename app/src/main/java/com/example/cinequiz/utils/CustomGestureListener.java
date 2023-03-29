@@ -4,21 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.content.Intent;
 
-import androidx.annotation.NonNull;
 import androidx.core.view.GestureDetectorCompat;
 
-import com.example.cinequiz.MainActivity;
-import com.example.cinequiz.ModeActivity;
+import com.example.cinequiz.GameActivity;
 import com.example.cinequiz.R;
 
-import com.example.cinequiz.R;
-
-import java.util.List;
 import java.util.Objects;
-
-
 
 
 //ESSAYER AVEC LE GESTURE LISTENER DANS GAMEACTIVITY
@@ -35,8 +27,9 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
     private final String points;
     private final String mode;
     private final String difficulty;
+    private final String activityCall;
 
-    public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String sens) {
+    public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String sens, String activityCall) {
 
         this.activity = activity;
         this.secondActivity = secondActivity;
@@ -45,10 +38,11 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
         this.points = null;
         this.mode = null;
         this.difficulty = null;
+        this.activityCall = activityCall;
     }
 
 
-    public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String sens, String points, String mode, String difficulty) {
+    public CustomGestureListener(Activity activity, Class secondActivity, GestureDetectorCompat gestureDetector, String sens, String points, String mode, String difficulty, String activityCall) {
 
         this.activity = activity;
         this.secondActivity = secondActivity;
@@ -57,6 +51,7 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
         this.points = points;
         this.mode = mode;
         this.difficulty = difficulty;
+        this.activityCall = activityCall;
     }
 
     @Override
@@ -87,12 +82,18 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
                     if (diffX < 0 && this.sens.equals(">")) {
                         // Swipe de droite à gauche
 
+                        if(Objects.equals(activityCall, "GameActivity1"))
+                            GameActivity.dialog.dismiss();
+
                         activity.startActivity(intent);
                         activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         activity.finish();
                     }
                     if (diffX > 0 && this.sens.equals("<")) {
                         // Swipe de gauche à droite
+
+                        if(Objects.equals(activityCall, "GameActivity1"))
+                            GameActivity.dialog.dismiss();
 
                         activity.startActivity(intent);
                         activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);

@@ -54,7 +54,6 @@
     <string name="the_terminator">The Terminator</string>
     <string name="the_shining">The Shining</string>
     <string name="the_godfather">The Godfather</string>
-    <string name="jaws">Jaws</string>
     <string name="rocky">Rocky</string>
     <string name="dirty_dancing">Dirty Dancing</string>
     <string name="apocalypse_now">Apocalypse Now</string>
@@ -62,6 +61,7 @@
     <string name="braveheart">Braveheart</string>
     <string name="pulp_fiction">Pulp Fiction</string>
     <string name="the_lion_king">The Lion King</string>
+    <string name="the_matrix">The Matrix</string>
 
     <!--    Célébrité    -->
     <string name="tarantino">Quentin Tarantino</string>
@@ -85,4 +85,24 @@
     <string name="dwayne_johnson">Dwayne Johnson</string>
     <string name="keanu_reeves">Keanu Reeves</string>
     <string name="cate_blanchett">Cate Blanchett</string>
+
+    <!-- replique -->
+    <string name="r_force">May the Force be with you.</string> <!-- Star Wars-->
+    <string name="r_casablanca">Here\'s looking at you, kid.</string> <!-- Casablanca-->
+    <string name="r_truth">You can\'t handle the truth!</string> <!-- A Few Good Men-->
+    <string name="r_terminator">I\'ll be back.</string> <!-- The Terminator-->
+    <string name="r_shining">Here\'s Johnny!</string> <!-- The Shining-->
+    <string name="r_godfather">I\'m gonna make him an offer he can\'t refuse.</string> <!-- The Godfather-->
+    <string name="r_forrest_gump">Life is like a box of chocolates, you never know what you\'re gonna get.</string> <!-- Forrest Gump-->
+    <string name="r_jaws">You\'re gonna need a bigger boat.</string> <!-- Jaws-->
+    <string name="r_rocky">Yo, Adrian!</string> <!-- Rocky-->
+    <string name="r_dirty_dancing">Nobody puts Baby in a corner.</string> <!-- Dirty Dancing-->
+    <string name="r_titanic">I\'m the king of the world!</string> <!-- Titanic-->
+    <string name="r_apocalypse_now">I love the smell of napalm in the morning.</string> <!-- Apocalypse Now-->
+    <string name="r_the_matrix">Unfortunately, no one can be told what the Matrix is. You have to see it for yourself.</string> <!-- The Matrix-->
+    <string name="r_scarface">Say hello to my little friend!</string> <!-- Scarface-->
+    <string name="r_forest_gump_2">Stupid is as stupid does.</string> <!-- Forrest Gump-->
+    <string name="r_braveheart">They may take our lives, but they\'ll never take our freedom!</string> <!-- Braveheart-->
+    <string name="r_pulp_fiction">I\'m gonna get medieval on your ass.</string> <!-- Pulp Fiction-->
+    <string name="r_the_lion_king">Hakuna Matata! What a wonderful phrase.</string> <!-- The Lion King-->
 </resources>

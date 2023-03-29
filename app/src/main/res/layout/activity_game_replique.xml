@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="15dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="26dp">
 
             <ImageView
                 android:id="@+id/imageFilm"
@@ -49,7 +49,7 @@
                 android:layout_height="200dp"
                 android:background="@drawable/layout_bg"
                 android:backgroundTint="@color/dark_blue"
-                android:contentDescription="image du film"
+                android:contentDescription="@string/app_name"
                 android:minWidth="160dp"
                 android:minHeight="90dp"
                 android:scaleType="centerCrop" />
@@ -63,7 +63,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:gravity="center"
                 android:padding="12dip"
-                android:text="SomeText"
+                android:text="@string/app_name"
                 android:textAlignment="center"
                 android:textColor="#ffffffff"
                 android:textSize="20sp"
@@ -76,7 +76,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="Comment s'appelle ce film ?"
+            android:text="@string/app_name"
+            android:layout_marginHorizontal="15dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:layout_marginTop="10dp"
@@ -103,7 +104,7 @@
                 android:background="@drawable/button_bg"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="Button"
+                android:text="@string/app_name"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="italic"
@@ -124,7 +125,7 @@
                 android:background="@drawable/button_bg"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="Button"
+                android:text="@string/app_name"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="italic"
@@ -145,7 +146,7 @@
                 android:background="@drawable/button_bg"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="Button"
+                android:text="@string/app_name"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="italic"
@@ -166,7 +167,7 @@
                 android:background="@drawable/button_bg"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="Button"
+                android:text="@string/app_name"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="italic"
@@ -203,7 +204,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-black"
-            android:text="30"
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="48sp"
@@ -224,7 +225,8 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                tools:srcCompat="@drawable/dot_grey" />
+                tools:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/point2"
@@ -232,7 +234,8 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/dot_grey" />
+                app:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/point3"
@@ -240,7 +243,8 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/dot_grey" />
+                app:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/point4"
@@ -248,7 +252,8 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/dot_grey" />
+                app:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/point5"
@@ -256,7 +261,8 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/dot_grey" />
+                app:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/point6"
@@ -264,7 +270,8 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/dot_grey" />
+                app:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/point7"
@@ -272,7 +279,8 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/dot_grey" />
+                app:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/point8"
@@ -280,7 +288,8 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/dot_grey" />
+                app:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/point9"
@@ -288,7 +297,8 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/dot_grey" />
+                app:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/point10"
@@ -296,7 +306,8 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/dot_grey" />
+                app:srcCompat="@drawable/dot_grey"
+                android:contentDescription="@string/app_name" />
 
         </LinearLayout>
     </LinearLayout>
