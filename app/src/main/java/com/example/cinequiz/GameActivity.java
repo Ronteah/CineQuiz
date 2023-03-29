@@ -24,7 +24,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,8 +63,11 @@ public class GameActivity extends AppCompatActivity {
     private ImageView image;
     private TextView temps;
     private TextView nbRep;
+    private TextView textReplique;
+    private TextView phraseQuestion;
     private String points;
     private String mode;
+    private String modePourQuestionSuivante;
     private String difficulty;
     private LinearLayout bgTimer;
     private ImageButton btnSound;
@@ -99,16 +101,35 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         points = intent.getStringExtra("points");
         mode = intent.getStringExtra("mode");
+        modePourQuestionSuivante = mode;
         difficulty = intent.getStringExtra("difficulty");
+
+        this.listBtnChoix = new ArrayList<>();
+        this.listPoints = new ArrayList<>();
+        this.questions = new ArrayList<>();
+
+        this.question = ChoisieQuestion();
+        this.reponse = this.question.getReponse();
 
         System.out.println(mode);
 
         switch (mode){
             case "replique":
                 setContentView(R.layout.activity_game_replique);
+                textReplique = findViewById(R.id.textReplique);
+                System.out.println(this.questions.isEmpty());
+                if (this.questions.isEmpty()){
+                    textReplique.setText(":[");
+                }else {
+                    textReplique.setText(question.getReplique());
+                }
+                phraseQuestion = findViewById(R.id.question);
+                phraseQuestion.setText(R.string.question_replique);
                 break;
             case "blindtest":
                 setContentView(R.layout.activity_game_blindtest);
+                phraseQuestion = findViewById(R.id.question);
+                phraseQuestion.setText(R.string.question_blindtest);
                 playAudio("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
                 btnSound = findViewById(R.id.btnSound);
                 btnSound.setOnClickListener(new View.OnClickListener() {
@@ -120,18 +141,17 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
                 break;
-            default:
+            case "celebrity":
                 setContentView(R.layout.activity_game);
+                phraseQuestion = findViewById(R.id.question);
+                phraseQuestion.setText(R.string.question_celebrite);
+                break;
+            case "image":
+                setContentView(R.layout.activity_game);
+                phraseQuestion = findViewById(R.id.question);
+                phraseQuestion.setText(R.string.question_image);
                 break;
         }
-
-        this.listBtnChoix = new ArrayList<>();
-        this.listPoints = new ArrayList<>();
-        this.questions = new ArrayList<>();
-
-        this.question = ChoisieQuestion();
-        this.reponse = this.question.getReponse();
-
 
         temps = findViewById(R.id.timer);
 
@@ -141,7 +161,7 @@ public class GameActivity extends AppCompatActivity {
         image = findViewById(R.id.imageFilm);
 
         if(!Objects.equals(mode, "replique") && !Objects.equals(mode, "blindtest")) {
-            Picasso.get().load(question.getImage()).into(image);
+            Picasso.get().load(question.getLien()).into(image);
         }
 
         nbRep = findViewById(R.id.nbRep);
@@ -200,16 +220,6 @@ public class GameActivity extends AppCompatActivity {
         return filteredQuestions;
     }
 
-    private static List<Question> filterQuestionsNormal(List<Question> questions) {
-        List<Question> filteredQuestions = new ArrayList<>();
-        for (Question question : questions) {
-            if (!question.getMode().equals("Blindtest")) {
-                filteredQuestions.add(question);
-            }
-        }
-        return filteredQuestions;
-    }
-
     private Question ChoisieQuestion(){
         Random random = new Random();
         switch (difficulty){
@@ -229,7 +239,21 @@ public class GameActivity extends AppCompatActivity {
 
         if (mode.equals("normal")){
             //faire des truc pour qu'il y est un seul mode et la question qui vas bien
-            this.questions= filterQuestionsNormal(this.questions);
+            switch (random.nextInt(3)){
+                case 0: mode = "image";
+                    this.questions= filterQuestionsByMode(this.questions, mode);
+                    break;
+                case 1: mode = "celebrity";
+                    this.questions= filterQuestionsByMode(this.questions, mode);
+                    break;
+                case 2: mode = "replique";
+                    this.questions= filterQuestionsByMode(this.questions, mode);
+                    break;
+                default: mode = "image";
+                    this.questions= filterQuestionsByMode(this.questions, mode);
+                    System.out.println("ERREUR DANS SWITCH CHOIX MODE");
+                    break;
+            }
         }else {
             this.questions= filterQuestionsByMode(this.questions, mode);
         }
@@ -330,10 +354,6 @@ public class GameActivity extends AppCompatActivity {
 
         timer.start();
 
-        listBtnChoix.get(0).setText("pas assez");
-        listBtnChoix.get(1).setText("de questions");
-        listBtnChoix.get(2).setText("pour ce mode");
-        listBtnChoix.get(3).setText("veillez quitter");
         try {
             int numrep = random.nextInt(listBtnChoix.size());
 
@@ -418,6 +438,11 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         } catch (IllegalArgumentException e) {
+            SetButtonsUnclickable();
+            listBtnChoix.get(0).setText("pas assez");
+            listBtnChoix.get(1).setText("de questions");
+            listBtnChoix.get(2).setText("pour ce mode");
+            listBtnChoix.get(3).setText("veillez quitter");
             e.printStackTrace();
         }
 
@@ -570,7 +595,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void CreateGestureDetector(){
-        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, GameActivity.class, gestureDetector, ">", points, mode, difficulty));
+        gestureDetector = new GestureDetectorCompat(this, new CustomGestureListener(this, GameActivity.class, gestureDetector, ">", points, modePourQuestionSuivante, difficulty));
     }
 
     private GestureDetectorCompat CreateGestureDetectorVictory(){

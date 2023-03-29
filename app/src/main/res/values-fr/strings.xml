@@ -44,6 +44,20 @@
     <string name="the_lord_of_the_rings">Le Seigneur des Anneaux</string> <!-- mettant en vedette Cate Blanchett et Orlando Bloom -->
     <string name="toy_story">Toy Story</string> <!-- mettant en vedette Tom Hanks -->
     <string name="the_matrix">Matrix</string> <!-- mettant en vedette Keanu Reeves -->
+    <string name="casablanca">Casablanca</string>
+    <string name="a_few_good_men">Des hommes d\'honneur</string>
+    <string name="the_shining">Shining</string>
+    <string name="the_godfather">Le Parrain</string>
+    <string name="jaws">Les Dents de la mer</string>
+    <string name="rocky">Rocky</string>
+    <string name="dirty_dancing">Dirty Dancing</string>
+    <string name="apocalypse_now">Apocalypse Now</string>
+    <string name="scarface">Scarface</string>
+    <string name="braveheart">Braveheart</string>
+    <string name="pulp_fiction">Pulp Fiction</string>
+    <string name="the_terminator">Terminator</string>
+    <string name="the_lion_king">Le Roi Lion</string>
+
 
     <!--    Célébrité    -->
     <string name="tarantino">Quentin Tarantino</string>
@@ -67,4 +81,25 @@
     <string name="dwayne_johnson">Dwayne Johnson</string>
     <string name="keanu_reeves">Keanu Reeves</string>
     <string name="cate_blanchett">Cate Blanchett</string>
+
+
+    <!-- replique -->
+    <string name="r_force">Que la Force soit avec toi.</string> <!-- Star Wars-->
+    <string name="r_casablanca">Tu as beau me faire les yeux doux, ça ne marche pas.</string> <!-- Casablanca-->
+    <string name="r_truth">Vous ne pouvez pas gérer la vérité !</string> <!-- A Few Good Men-->
+    <string name="r_terminator">Je reviendrai.</string> <!-- The Terminator-->
+    <string name="r_shining">Coucou, c’est Johnny !</string> <!-- The Shining-->
+    <string name="r_godfather">Je vais lui faire une offre qu\'il ne pourra pas refuser.</string> <!-- The Godfather-->
+    <string name="r_forrest_gump">La vie, c\'est comme une boîte de chocolats, on ne sait jamais sur quoi on va tomber.</string> <!-- Forrest Gump-->
+    <string name="r_jaws">Il va nous falloir un plus gros bateau.</string> <!-- Jaws-->
+    <string name="r_rocky">Yo, Adrian !</string> <!-- Rocky-->
+    <string name="r_dirty_dancing">Personne ne met bébé dans un coin.</string> <!-- Dirty Dancing-->
+    <string name="r_titanic">Je suis le roi du monde !</string> <!-- Titanic-->
+    <string name="r_apocalypse_now">J\'adore l\'odeur du napalm au petit matin.</string> <!-- Apocalypse Now-->
+    <string name="r_the_matrix">Malheureusement, personne ne peut être informé de ce qu\'est la Matrice. Tu dois la voir de tes propres yeux.</string> <!-- The Matrix-->
+    <string name="r_scarface">Dis bonjour à mon petit ami !</string> <!-- Scarface-->
+    <string name="r_forest_gump_2">Bête est qui bête fait.</string> <!-- Forrest Gump-->
+    <string name="r_braveheart">Ils peuvent nous enlever la vie, mais ils ne nous enlèveront jamais notre liberté! </string> <!--braveheart-->
+    <string name="r_pulp_fiction">Je vais être médiéval sur ton cul.</string> <!-- Pulp Fiction-->
+    <string name="r_the_lion_king">Hakuna Matata ! Quelle phrase magnifique.</string> <!-- The Lion King-->
 </resources>

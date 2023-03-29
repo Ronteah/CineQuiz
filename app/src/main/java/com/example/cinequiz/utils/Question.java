@@ -1,7 +1,5 @@
 package com.example.cinequiz.utils;
 
-import android.media.Image;
-
 import com.example.cinequiz.R;
 
 public class Question {
@@ -11,13 +9,21 @@ public class Question {
 
     private int reponse;
 
-    private String image;
+    private String lien;
+
+    private int replique;
 
 
-    public Question(String mode, int reponse, String image) {
+    public Question(String mode, int reponse, String lien) {
         this.mode = mode;
         this.reponse = reponse;
-        this.image = image;
+        this.lien = lien;
+    }
+
+    public Question(String mode, int reponse, int replique) {
+        this.mode = mode;
+        this.reponse = reponse;
+        this.replique = replique;
     }
 
     public int getQuestion() {
@@ -38,11 +44,15 @@ public class Question {
         return reponse;
     }
 
-    public String getImage() {
-        return image;
+    public String getLien() {
+        return lien;
     }
 
     public String getMode() {
         return mode;
+    }
+
+    public int getReplique() {
+        return replique;
     }
 }
