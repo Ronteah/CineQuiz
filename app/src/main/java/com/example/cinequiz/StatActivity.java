@@ -18,6 +18,7 @@ import androidx.core.view.GestureDetectorCompat;
 
 import com.example.cinequiz.utils.CustomGestureListener;
 
+import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -67,7 +68,11 @@ public class StatActivity extends AppCompatActivity {
 
         nbOscars.setText(OscarCounter.getNbOscarsString());
         textTotal.setText("Total = " + OscarCounter.getNbOscars());
-        mean.setText("" + RepCounter.getMean());
+
+        NumberFormat nf= NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        mean.setText("" + nf.format(RepCounter.getMean()));
+
         nbPerfect.setText("" + RepCounter.getNbPerfect());
         nbNormal.setText(OscarCounter.getNbNormalString());
         nbBlindtest.setText(OscarCounter.getNbBlindtestString());

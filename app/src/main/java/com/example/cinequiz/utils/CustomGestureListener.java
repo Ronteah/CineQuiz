@@ -82,8 +82,9 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
                     if (diffX < 0 && this.sens.equals(">")) {
                         // Swipe de droite à gauche
 
-                        if(Objects.equals(activityCall, "GameActivity1"))
+                        if(Objects.equals(activityCall, "GameActivity1")) {
                             GameActivity.dialog.dismiss();
+                        }
 
                         activity.startActivity(intent);
                         activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -92,8 +93,9 @@ public class CustomGestureListener extends GestureDetector.SimpleOnGestureListen
                     if (diffX > 0 && this.sens.equals("<")) {
                         // Swipe de gauche à droite
 
-                        if(Objects.equals(activityCall, "GameActivity1"))
+                        if(Objects.equals(activityCall, "GameActivity1")) {
                             GameActivity.dialog.dismiss();
+                        }
 
                         activity.startActivity(intent);
                         activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);

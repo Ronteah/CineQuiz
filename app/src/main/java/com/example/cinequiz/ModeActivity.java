@@ -1,6 +1,7 @@
 package com.example.cinequiz;
 import com.example.cinequiz.utils.OscarCounter;
 import com.example.cinequiz.utils.RepCounter;
+import com.example.cinequiz.GameActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -98,6 +99,9 @@ public class ModeActivity extends AppCompatActivity {
                 intent.putExtra("points", "");
                 intent.putExtra("mode", "normal");
                 intent.putExtra("difficulty", difficulty);
+
+                GameActivity.setModeInit("normal");
+
                 startActivity(intent);
                 finish();
             }
@@ -110,6 +114,9 @@ public class ModeActivity extends AppCompatActivity {
                 intent.putExtra("points", "");
                 intent.putExtra("mode", "blindtest");
                 intent.putExtra("difficulty", difficulty);
+
+                GameActivity.setModeInit("blindtest");
+
                 startActivity(intent);
                 finish();
             }
@@ -122,6 +129,9 @@ public class ModeActivity extends AppCompatActivity {
                 intent.putExtra("points", "");
                 intent.putExtra("mode", "image");
                 intent.putExtra("difficulty", difficulty);
+
+                GameActivity.setModeInit("image");
+
                 startActivity(intent);
                 finish();
             }
@@ -134,6 +144,9 @@ public class ModeActivity extends AppCompatActivity {
                 intent.putExtra("points", "");
                 intent.putExtra("mode", "celebrity");
                 intent.putExtra("difficulty", difficulty);
+
+                GameActivity.setModeInit("celebrity");
+
                 startActivity(intent);
                 finish();
             }
@@ -146,6 +159,9 @@ public class ModeActivity extends AppCompatActivity {
                 intent.putExtra("points", "");
                 intent.putExtra("mode", "replique");
                 intent.putExtra("difficulty", difficulty);
+
+                GameActivity.setModeInit("replique");
+
                 startActivity(intent);
                 finish();
             }

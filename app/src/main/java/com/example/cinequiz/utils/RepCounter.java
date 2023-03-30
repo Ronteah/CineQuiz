@@ -2,6 +2,8 @@ package com.example.cinequiz.utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +66,10 @@ public class RepCounter {
         return mean;
     }
 
+    public static void setMean(Double m) {
+        mean = m;
+    }
+
     public static int getScoresSize() {
         return scores.size();
     }
@@ -81,15 +87,6 @@ public class RepCounter {
              scores) {
             mean += s;
         }
-        mean = mean/scores.size();
-        mean = round(mean, 2); //Limite à 2 chiffres après la virgule
-    }
-
-    public static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
+        mean = mean/(scores.size());
     }
 }

@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static int CLICK_THRESHOLD = 120;
 
-    SharedPreferences sharedPreferences;
-
     @Override
     public void onBackPressed() {}
 
@@ -51,9 +49,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListQuestions.init();
-        //Load les données sauvegardées
-        sharedPreferences = getApplicationContext().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
-        PreferencesSaver.LoadPreferences(sharedPreferences);
+
+        PreferencesSaver.createSharedPreferences(getApplicationContext());
+
+        if(!PreferencesSaver.getRunning()) {
+            PreferencesSaver.LoadPreferences();
+            PreferencesSaver.setRunning(true);
+        }
 
 
         ImageButton easy = findViewById(R.id.btnEasy);

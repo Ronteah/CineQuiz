@@ -71,6 +71,13 @@ public class GameActivity extends AppCompatActivity {
     private TextView phraseQuestion;
     private String points;
     private String mode;
+
+    private static String modeInit;
+
+    public static void setModeInit(String mode) {
+        modeInit = mode;
+    }
+
     private String modePourQuestionSuivante;
     private String difficulty;
     private LinearLayout bgTimer;
@@ -83,7 +90,6 @@ public class GameActivity extends AppCompatActivity {
     private Question question;
 
     private GestureDetectorCompat gestureDetector;
-    SharedPreferences sharedPreferences;
 
     private MediaPlayer mediaPlayer;
 
@@ -316,7 +322,7 @@ public class GameActivity extends AppCompatActivity {
 
         } else {
             listPoints.get(points.length()).setImageResource(R.drawable.white_dot);
-            listPoints.get(points.length()).getLayoutParams().width = 120;
+            listPoints.get(points.length()).getLayoutParams().width = 160;
 
             for (int i = 0; i < points.length(); i++){
                 if (points.charAt(i) == 'o'){
@@ -526,7 +532,7 @@ public class GameActivity extends AppCompatActivity {
     }
     private void GameFinisher(){
         //Écran de victoire
-        switch (mode){
+        switch (modeInit){
             case "normal":
                 OscarCounter.addNbNormal(NombreOscars());
                 break;
@@ -552,11 +558,10 @@ public class GameActivity extends AppCompatActivity {
         RepCounter.addScore((double)RepCounter.getBonneRep());
 
         //Sauvegarde les données
-        sharedPreferences = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
-        PreferencesSaver.SavePreferences(sharedPreferences);
+        PreferencesSaver.SavePreferences();
 
         (new Handler()).postDelayed(this::VictoryScreen, 800);
-        temps.setText("");
+        temps.setText("GG!");
     }
 
     @SuppressLint("SetTextI18n")
