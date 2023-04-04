@@ -147,15 +147,16 @@ public class GameActivity extends AppCompatActivity {
                 phraseQuestion = findViewById(R.id.question);
                 phraseQuestion.setText(R.string.question_blindtest);
 
-                playAudio("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                mediaPlayer = MediaPlayer.create(GameActivity.this, question.getReplique());
+                mediaPlayer.start();
 
                 btnSound = findViewById(R.id.btnSound);
                 btnSound.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mediaPlayer.stop();
-                        mediaPlayer.reset();
-                        playAudio("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                        mediaPlayer.pause();
+                        mediaPlayer.seekTo(0);
+                        mediaPlayer.start();
                     }
                 });
                 break;
@@ -210,30 +211,6 @@ public class GameActivity extends AppCompatActivity {
         InitialisePoints();
     }
 
-    private void playAudio(String audioUrl) {
-
-        // initializing media player
-        mediaPlayer = new MediaPlayer();
-
-        // below line is use to set the audio
-        // stream type for our media player.
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-        // below line is use to set our
-        // url to our media player.
-        try {
-            mediaPlayer.setDataSource(audioUrl);
-            // below line is use to prepare
-            // and start our media player.
-            mediaPlayer.prepare();
-            mediaPlayer.start();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     private static List<Question> filterQuestionsByMode(List<Question> questions, String mode) {
         List<Question> filteredQuestions = new ArrayList<>();
         for (Question question : questions) {
@@ -282,7 +259,7 @@ public class GameActivity extends AppCompatActivity {
             this.questions= filterQuestionsByMode(this.questions, mode);
         }
         try {
-            return this.questions.get(random.nextInt(this.questions.size()));
+            return this.questions.remove(random.nextInt(this.questions.size()));
         }catch (IllegalArgumentException e){
             System.out.println("pas assez de question pour ce mode et cette difficulté");
             e.printStackTrace();
@@ -371,6 +348,8 @@ public class GameActivity extends AppCompatActivity {
                 RepCounter.addTotalRep();
                 nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
+                mediaPlayer.stop();
+
                 if(RepCounter.getTotalRep() == 10) {
                     GameFinisher();
                 } else {
@@ -399,6 +378,8 @@ public class GameActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             points += "o";
+
+                            mediaPlayer.stop();
 
                             if(RepCounter.getTotalRep() < 9) {
                                 CreateGestureDetector();
@@ -437,6 +418,8 @@ public class GameActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             points += "x";
+
+                            mediaPlayer.stop();
 
                             if(RepCounter.getTotalRep() < 9) {
                                 CreateGestureDetector();
@@ -488,6 +471,7 @@ public class GameActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 dialog1.setContentView(R.layout.dialog_layout);
                 dialog1.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 dialog1.setCancelable(false);
@@ -508,6 +492,7 @@ public class GameActivity extends AppCompatActivity {
                 btnYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mediaPlayer.stop();
                         dialog1.dismiss();
                         Intent intent1 = new Intent(GameActivity.this, MainActivity.class);
                         startActivity(intent1);

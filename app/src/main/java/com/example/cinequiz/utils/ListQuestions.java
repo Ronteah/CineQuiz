@@ -90,6 +90,11 @@ public class ListQuestions {
         facile.add(new Question("replique", R.string.the_lion_king, R.string.r_the_lion_king));
 
 
+        facile.add(new Question("blindtest", R.string.the_lion_king, R.raw.anneaux));
+        facile.add(new Question("blindtest", R.string.the_lion_king, R.raw.frozen));
+        facile.add(new Question("blindtest", R.string.the_lion_king, R.raw.indiana));
+        facile.add(new Question("blindtest", R.string.the_lion_king, R.raw.matrix));
+
     }
 
     public static List<Question> getFacile() {
