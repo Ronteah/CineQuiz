@@ -348,7 +348,9 @@ public class GameActivity extends AppCompatActivity {
                 RepCounter.addTotalRep();
                 nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
-                mediaPlayer.stop();
+                if (mediaPlayer != null){
+                    mediaPlayer.stop();
+                }
 
                 if(RepCounter.getTotalRep() == 10) {
                     GameFinisher();
@@ -379,7 +381,10 @@ public class GameActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             points += "o";
 
-                            mediaPlayer.stop();
+                            if (mediaPlayer != null){
+                                mediaPlayer.stop();
+                            }
+
 
                             if(RepCounter.getTotalRep() < 9) {
                                 CreateGestureDetector();
@@ -419,7 +424,9 @@ public class GameActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             points += "x";
 
-                            mediaPlayer.stop();
+                            if (mediaPlayer != null){
+                                mediaPlayer.stop();
+                            }
 
                             if(RepCounter.getTotalRep() < 9) {
                                 CreateGestureDetector();
@@ -492,7 +499,9 @@ public class GameActivity extends AppCompatActivity {
                 btnYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mediaPlayer.stop();
+                        if (mediaPlayer != null){
+                            mediaPlayer.stop();
+                        }
                         dialog1.dismiss();
                         Intent intent1 = new Intent(GameActivity.this, MainActivity.class);
                         startActivity(intent1);
