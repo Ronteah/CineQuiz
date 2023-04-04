@@ -90,10 +90,10 @@ public class ListQuestions {
         facile.add(new Question("replique", R.string.the_lion_king, R.string.r_the_lion_king));
 
 
-        facile.add(new Question("blindtest", R.string.the_lion_king, R.raw.anneaux));
-        facile.add(new Question("blindtest", R.string.the_lion_king, R.raw.frozen));
-        facile.add(new Question("blindtest", R.string.the_lion_king, R.raw.indiana));
-        facile.add(new Question("blindtest", R.string.the_lion_king, R.raw.matrix));
+        facile.add(new Question("blindtest", R.string.the_lord_of_the_rings, R.raw.anneaux));
+        facile.add(new Question("blindtest", R.string.kill_bill, R.raw.killbill));
+        facile.add(new Question("blindtest", R.string.indiana_jones, R.raw.indiana));
+        facile.add(new Question("blindtest", R.string.the_matrix, R.raw.matrix));
 
     }
 
