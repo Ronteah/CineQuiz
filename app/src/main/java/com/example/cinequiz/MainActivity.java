@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton easy = findViewById(R.id.btnEasy);
         ImageButton medium = findViewById(R.id.btnMedium);
         ImageButton hard = findViewById(R.id.btnHard);
+        ImageButton marvel = findViewById(R.id.btnMarvel);
 
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);
@@ -187,6 +189,28 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        marvel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                long duration = event.getEventTime() - event.getDownTime();
+
+                if (event.getAction() == MotionEvent.ACTION_UP && duration < CLICK_THRESHOLD) {
+
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"));
+                    startActivity(browserIntent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                    finish();
+                }
+                else {
+                    gestureDetector.onTouchEvent(event);
+                }
+
+                return false;
+            }
+        });
+
+
     }
 
     @Override
