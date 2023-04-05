@@ -58,6 +58,20 @@
     <string name="the_terminator">Terminator</string>
     <string name="the_lion_king">Le Roi Lion</string>
 
+    <string name="frozen">La Reine des neiges</string>
+    <string name="hunger">Hunger Games</string>
+    <string name="interstellar">Interstellar</string>
+    <string name="pardon">Le Grand Pardon</string>
+    <string name="pirates">Pirates des Caraïbes</string>
+    <string name="potter">Harry Potter</string>
+    <string name="requiem">Requiem for a Dream</string>
+    <string name="samurai">Le Dernier samouraï</string>
+    <string name="showman">The Greatest Showman</string>
+    <string name="starwars">Star Wars</string>
+    <string name="fast_and_furious">Fast and furious</string>
+    <string name="terminator">Terminator</string>
+    <string name="tron">Tron</string>
+
 
     <!--    Célébrité    -->
     <string name="tarantino">Quentin Tarantino</string>

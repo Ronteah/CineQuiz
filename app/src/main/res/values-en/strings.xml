@@ -58,6 +58,22 @@
     <string name="pulp_fiction">Pulp Fiction</string>
     <string name="the_lion_king">The Lion King</string>
 
+    <string name="indiana_jones">Indiana Jones</string>
+    <string name="frozen">Frozen</string>
+    <string name="hunger">Hunger Games</string>
+    <string name="interstellar">Interstellar</string>
+    <string name="pardon">Pardon</string>
+    <string name="pirates">Pirates of the Caribbean</string>
+    <string name="potter">Harry Potter</string>
+    <string name="requiem">Requiem for a Dream</string>
+    <string name="samurai">The Last Samurai</string>
+    <string name="showman">The Greatest Showman</string>
+    <string name="starwars">Star Wars</string>
+    <string name="terminator">Terminator</string>
+    <string name="tron">Tron</string>
+    <string name="fast_and_furious">Fast and furious</string>
+
+
     <!--    Célébrité    -->
     <string name="tarantino">Quentin Tarantino</string>
     <string name="tom_hanks">Tom Hanks</string>

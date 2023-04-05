@@ -121,6 +121,7 @@ public class GameActivity extends AppCompatActivity {
         this.questions = new ArrayList<>();
 
         this.question = ChoisieQuestion();
+        ListQuestions.popQuestion(difficulty, this.question);
         this.reponse = this.question.getReponse();
 
         System.out.println(mode);
@@ -345,7 +346,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
 
-                RepCounter.addTotalRep();
+                RepCounter.setTotalRep(points.length());
                 nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
                 if (mediaPlayer != null){
@@ -370,7 +371,7 @@ public class GameActivity extends AppCompatActivity {
                 if (i == numrep){
                     listBtnChoix.get(i).setText(reponse);
                 }else {
-                    listBtnChoix.get(i).setText(questions.get(random.nextInt(questions.size())).getReponse());
+                    listBtnChoix.get(i).setText(questions.remove(random.nextInt(questions.size())).getReponse());
                 }
                 if ((listBtnChoix.get(i).getText()).equals(res.getString(this.reponse))){
                     //Bonne réponse
@@ -401,13 +402,13 @@ public class GameActivity extends AppCompatActivity {
                                 }
                             }
 
-                            RepCounter.addTotalRep();
-                            RepCounter.addBonneRep();
+                            RepCounter.setTotalRep(points.length());
+                            RepCounter.setBonneRep(Math.toIntExact(points.chars().filter(c -> c == 'o').count()));
                             nbRep.setText(RepCounter.getBonneRep() + "/" + RepCounter.getTotalRep());
 
                             bgTimer.setAlpha(0);
 
-                            if(RepCounter.getTotalRep() == 10) {
+                            if(RepCounter.getTotalRep() >= 10) {
                                 GameFinisher();
                                 temps.setText("GG!");
                             } else {

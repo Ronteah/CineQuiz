@@ -18,6 +18,10 @@ public class RepCounter {
         bonneRep += 1;
     }
 
+    public static void setBonneRep(int nb) {
+        bonneRep = nb;
+    }
+
     public static void resetBonneRep() {
         bonneRep = 0;
     }
@@ -31,6 +35,10 @@ public class RepCounter {
 
     public static void addTotalRep() {
         totalRep += 1;
+    }
+
+    public static void setTotalRep(int nb) {
+        totalRep = nb;
     }
 
     public static void resetTotalRep() {

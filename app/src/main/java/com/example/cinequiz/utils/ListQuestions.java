@@ -94,6 +94,20 @@ public class ListQuestions {
         facile.add(new Question("blindtest", R.string.kill_bill, R.raw.killbill));
         facile.add(new Question("blindtest", R.string.indiana_jones, R.raw.indiana));
         facile.add(new Question("blindtest", R.string.the_matrix, R.raw.matrix));
+        facile.add(new Question("blindtest", R.string.frozen, R.raw.frozen));
+        facile.add(new Question("blindtest", R.string.hunger, R.raw.hunger));
+        facile.add(new Question("blindtest", R.string.interstellar, R.raw.interstellar));
+        facile.add(new Question("blindtest", R.string.pardon, R.raw.pardon));
+        facile.add(new Question("blindtest", R.string.le_parain, R.raw.parrain));
+        facile.add(new Question("blindtest", R.string.pirates, R.raw.pirates));
+        facile.add(new Question("blindtest", R.string.potter, R.raw.potter));
+        facile.add(new Question("blindtest", R.string.requiem, R.raw.requiem));
+        facile.add(new Question("blindtest", R.string.samurai, R.raw.samurai));
+        facile.add(new Question("blindtest", R.string.showman, R.raw.showman));
+        facile.add(new Question("blindtest", R.string.star_wars, R.raw.starwars));
+        facile.add(new Question("blindtest", R.string.fast_and_furious, R.raw.tokyo));
+        facile.add(new Question("blindtest", R.string.the_terminator, R.raw.terminator));
+        facile.add(new Question("blindtest", R.string.tron, R.raw.tron));
 
     }
 
@@ -107,6 +121,19 @@ public class ListQuestions {
 
     public static List<Question> getDifficile() {
         return difficile;
+    }
+
+    public static boolean popQuestion(String difficulty, Question q){
+        switch (difficulty){
+            case "easy":
+                return facile.remove(q);
+            case "medium":
+                return moyen.remove(q);
+            case "hard":
+                return difficile.remove(q);
+            default:
+                return false;
+        }
     }
 
     public static List<Question> getMarvel() {
